@@ -192,9 +192,9 @@ img { max-width: 100%; display: block; }
 .hero-dog-wrap {
   position: absolute;
   bottom: 20px;
-  left: -30px;
-  width: 160px;
-  height: 160px;
+  left: -40px;
+  width: 210px;
+  height: 210px;
   border-radius: 50%;
   overflow: hidden;
   border: 5px solid var(--white);
@@ -527,7 +527,30 @@ img { max-width: 100%; display: block; }
   justify-content: center;
 }
 
-.contact-inner { max-width: 640px; width: 100%; text-align: center; }
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 4rem;
+  align-items: center;
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.contact-inner { max-width: 560px; width: 100%; text-align: center; }
+
+.contact-image {
+  width: 320px;
+  flex-shrink: 0;
+}
+
+.contact-img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+  display: block;
+}
 .contact-sub { color: var(--muted); margin-bottom: 2.5rem; }
 
 .contact-form { text-align: left; }
@@ -604,6 +627,8 @@ img { max-width: 100%; display: block; }
   .process-left { text-align: center; }
   .process-steps { justify-content: center; }
   .form-row { grid-template-columns: 1fr; }
+  .contact-layout { grid-template-columns: 1fr; }
+  .contact-image { display: none; }
 }
 
 @media (max-width: 600px) {
