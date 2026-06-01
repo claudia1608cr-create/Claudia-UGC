@@ -191,8 +191,8 @@ img { max-width: 100%; display: block; }
 .hero-visual { position: relative; display: flex; justify-content: center; align-items: flex-start; }
 
 .hero-image-wrap {
-  width: 320px;
-  height: 420px;
+  width: 400px;
+  height: 520px;
   border-radius: 200px 200px 180px 180px;
   overflow: hidden;
   background: var(--pink-light);
