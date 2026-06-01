@@ -169,6 +169,7 @@ img { max-width: 100%; display: block; }
 .stat { display: flex; flex-direction: column; }
 .stat-number { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: var(--dark); }
 .stat-label { font-size: 0.78rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+.stat-langs { font-size: 0.7rem; color: var(--pink); font-weight: 500; margin-top: 2px; }
 .stat-divider { width: 1px; height: 40px; background: var(--beige-dark); }
 
 .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem; }
