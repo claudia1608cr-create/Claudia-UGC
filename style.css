@@ -247,40 +247,43 @@ img { max-width: 100%; display: block; }
   white-space: nowrap;
 }
 
-.marquee-track span {
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--dark);
-  letter-spacing: 0.03em;
+.brand-dot {
+  color: var(--pink);
+  font-size: 1.2rem;
 }
 
-.marquee-track span:nth-child(even) {
-  color: var(--pink);
-  font-weight: 400;
+.brand-logo {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--dark);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0.75;
+  transition: opacity 0.2s;
+  cursor: default;
+}
+
+.brand-logo:hover { opacity: 1; }
+
+/* Brand-specific styling */
+.brand-always   { font-style: italic; text-transform: lowercase; font-size: 1.15rem; }
+.brand-visa     { color: #1a1f71; letter-spacing: 0.08em; }
+.brand-colgate  { color: #e2231a; }
+.brand-nicks    { font-style: italic; letter-spacing: 0.02em; }
+.brand-organic  { font-weight: 400; letter-spacing: 0.06em; }
+.brand-femina   { font-style: italic; font-weight: 400; text-transform: none; }
+.brand-bronza   { letter-spacing: 0.1em; }
+.brand-scandy   { font-weight: 400; text-transform: lowercase; }
+.brand-lyko     { letter-spacing: 0.12em; }
+.brand-dashl    { font-weight: 600; }
+
+.marquee-wrapper:hover .marquee-track {
+  animation-play-state: paused;
 }
 
 @keyframes marquee {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
-}
-
-/* ===== ABOUT ===== */
-.about {
-  padding: 6rem 5%;
-  display: flex;
-  justify-content: center;
-}
-
-.about-inner {
-  max-width: 700px;
-  text-align: center;
-}
-
-.about-inner p {
-  color: var(--muted);
-  margin-bottom: 1rem;
-  font-size: 1rem;
-  line-height: 1.8;
 }
 
 /* ===== PROCESS ===== */
