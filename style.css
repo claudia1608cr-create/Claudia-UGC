@@ -174,20 +174,6 @@ img { max-width: 100%; display: block; }
 
 .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem; }
 
-.hero-bts {
-  margin-bottom: 1.5rem;
-}
-
-.hero-bts-img {
-  width: 100%;
-  max-width: 420px;
-  height: 260px;
-  object-fit: cover;
-  object-position: center 20%;
-  border-radius: var(--radius);
-  box-shadow: 0 8px 30px rgba(0,0,0,0.1);
-}
-
 .hero-socials { display: flex; gap: 1.5rem; flex-wrap: wrap; }
 .social-link {
   display: flex;
@@ -202,6 +188,27 @@ img { max-width: 100%; display: block; }
 .social-link svg { width: 18px; height: 18px; }
 
 /* Hero visual */
+/* Hero dog image */
+.hero-dog-wrap {
+  position: absolute;
+  bottom: 20px;
+  left: -30px;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 5px solid var(--white);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  z-index: 2;
+}
+
+.hero-dog-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+}
+
 .hero-visual { position: relative; display: flex; justify-content: center; align-items: flex-start; }
 
 .hero-image-wrap {
@@ -385,29 +392,39 @@ img { max-width: 100%; display: block; }
 .process {
   padding: 6rem 5%;
   background: var(--white);
-  text-align: center;
 }
 
-.process-visual {
-  margin: 2rem auto 3rem;
-  max-width: 500px;
-  border-radius: var(--radius);
-  overflow: hidden;
-  box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+.process-inner {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 4rem;
+  align-items: start;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.process-left {
+  text-align: left;
+}
+
+.process-right {
+  width: 340px;
+  flex-shrink: 0;
 }
 
 .process-img {
   width: 100%;
-  height: 340px;
-  object-fit: cover;
-  object-position: top;
+  height: auto;
+  object-fit: contain;
   display: block;
+  border-radius: var(--radius);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.1);
 }
 
 .process-steps {
   display: flex;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 0;
   margin-top: 3rem;
   flex-wrap: wrap;
@@ -582,6 +599,10 @@ img { max-width: 100%; display: block; }
   .testimonial-bubble { right: 0; bottom: -40px; }
   .process-arrow { display: none; }
   .process-steps { gap: 1rem; }
+  .process-inner { grid-template-columns: 1fr; }
+  .process-right { width: 100%; }
+  .process-left { text-align: center; }
+  .process-steps { justify-content: center; }
   .form-row { grid-template-columns: 1fr; }
 }
 
