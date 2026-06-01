@@ -374,6 +374,22 @@ img { max-width: 100%; display: block; }
   text-align: center;
 }
 
+.process-visual {
+  margin: 2rem auto 3rem;
+  max-width: 500px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+}
+
+.process-img {
+  width: 100%;
+  height: 340px;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+}
+
 .process-steps {
   display: flex;
   align-items: flex-start;
