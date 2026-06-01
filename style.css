@@ -367,12 +367,14 @@ img { max-width: 100%; display: block; }
 
 .video-wrap { aspect-ratio: 9/16; position: relative; }
 
-.video-wrap video {
+.video-wrap video,
+.video-wrap iframe {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
   background: var(--beige-dark);
+  border: none;
 }
 
 .video-placeholder {
