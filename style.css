@@ -477,6 +477,32 @@ img { max-width: 100%; display: block; }
   margin-top: -1rem;
 }
 
+.work-extra {
+  margin-bottom: 2rem;
+}
+
+.magnum-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #FDF3CC, #F5E6A0);
+  color: #7A5C00;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 100px;
+  text-decoration: none;
+  border: 1.5px solid #E8D06A;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.magnum-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(200,160,30,0.2);
+}
+
+.magnum-arrow { font-size: 1rem; }
+
 /* ===== WORK ===== */
 .work {
   padding: 6rem 5%;
