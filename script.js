@@ -8,10 +8,10 @@ navLinks?.querySelectorAll('a').forEach(a => {
   a.addEventListener('click', () => navLinks.classList.remove('open'));
 });
 
-// Pause other videos when one plays
-document.querySelectorAll('video').forEach(video => {
+// Pause other non-autoplay videos when one plays (leave autoplay clips alone)
+document.querySelectorAll('video:not([autoplay])').forEach(video => {
   video.addEventListener('play', () => {
-    document.querySelectorAll('video').forEach(v => {
+    document.querySelectorAll('video:not([autoplay])').forEach(v => {
       if (v !== video) v.pause();
     });
   });
