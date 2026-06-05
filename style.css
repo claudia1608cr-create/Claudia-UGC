@@ -481,24 +481,68 @@ img { max-width: 100%; display: block; }
   margin-bottom: 2rem;
 }
 
-.magnum-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  background: linear-gradient(135deg, #FDF3CC, #F5E6A0);
-  color: #7A5C00;
-  font-size: 0.85rem;
-  font-weight: 600;
-  padding: 10px 20px;
-  border-radius: 100px;
-  text-decoration: none;
-  border: 1.5px solid #E8D06A;
-  transition: transform 0.2s, box-shadow 0.2s;
+/* MAGNUM SNAPSHOTS inline section */
+.magnum-snapshots {
+  margin-top: 4rem;
+  padding-top: 3rem;
+  border-top: 1.5px solid #F5E6B8;
 }
 
-.magnum-link:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(200,160,30,0.2);
+.magnum-snap-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.magnum-snap-tag {
+  display: inline-block;
+  background: linear-gradient(135deg, #FDF3CC, #F5E6A0);
+  color: #7A5C00;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 100px;
+  margin-bottom: 0.8rem;
+}
+
+.magnum-snap-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  color: var(--dark);
+  line-height: 1.2;
+}
+
+.magnum-snap-title em {
+  font-style: italic;
+  color: #C8961E;
+}
+
+.magnum-snap-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.2rem;
+}
+
+.snap-card {
+  border-radius: 20px;
+  overflow: hidden;
+  background: #FDF6E3;
+  box-shadow: 0 6px 28px rgba(200, 150, 30, 0.15);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.snap-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 40px rgba(200, 150, 30, 0.25);
+}
+
+.snap-card video,
+.snap-card img {
+  width: 100%;
+  display: block;
+  aspect-ratio: 9/16;
+  object-fit: cover;
 }
 
 .magnum-arrow { font-size: 1rem; }
