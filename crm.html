@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Collab CRM — Claudia</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23C8E6D8'/><text y='72' x='50' text-anchor='middle' font-size='48' font-family='Georgia,serif' font-weight='700' fill='%235d8a74'>CR</text></svg>" />
+<link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23C8E6D8'/><text y='72' x='50' text-anchor='middle' font-size='48' font-family='Georgia,serif' font-weight='700' fill='%235d8a74'>CR</text></svg>" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="theme-color" content="#FDFAF7" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --pink:#F8D7DC; --pink-light:#FDF0F2; --pink-deep:#c47a8a;
+  --green:#C8E6D8; --green-light:#E4F3EC; --green-deep:#5d8a74;
+  --beige:#FDFAF7; --beige-dark:#F5EFE8;
+  --dark:#2A2A2A; --muted:#7A6E6A; --white:#fff;
+  --amber:#F3E0C0; --amber-deep:#a8802f;
+  --radius:18px; --radius-sm:11px;
+  --shadow:0 2px 14px rgba(42,42,42,.06);
+}
+html{-webkit-text-size-adjust:100%}
+body{font-family:'Inter',sans-serif;background:var(--beige);color:var(--dark);line-height:1.55;font-size:16px;
+  padding-bottom:env(safe-area-inset-bottom)}
+h1,h2,h3{font-family:'Playfair Display',serif;line-height:1.2;font-weight:700}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font-family:inherit;font-size:inherit;color:inherit}
+button{cursor:pointer;border:none;background:none}
+.wrap{max-width:1080px;margin:0 auto;padding:0 18px}
+
+/* ===== HEADER ===== */
+.top{background:var(--white);border-bottom:1px solid var(--beige-dark);position:sticky;top:0;z-index:40}
+.top-in{max-width:1080px;margin:0 auto;padding:14px 18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.brandmark{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:700;line-height:1.1}
+.brandmark small{display:block;font-family:'Inter',sans-serif;font-size:.62rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted);font-weight:500}
+.top-spacer{flex:1}
+.iconbtn{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;font-size:1rem;
+  background:var(--beige);border:1px solid var(--beige-dark);transition:.15s}
+.iconbtn:hover{background:var(--beige-dark)}
+
+/* ===== TABS ===== */
+.tabs{display:flex;gap:6px;padding:12px 18px 0;max-width:1080px;margin:0 auto;overflow-x:auto;
+  -webkit-overflow-scrolling:touch;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{padding:9px 16px;border-radius:100px;font-size:.83rem;font-weight:600;letter-spacing:.02em;
+  color:var(--muted);white-space:nowrap;border:1px solid transparent;transition:.15s}
+.tab:hover{color:var(--dark)}
+.tab.on{background:var(--dark);color:var(--white)}
+.tab .pill{display:inline-block;margin-left:6px;background:rgba(255,255,255,.22);border-radius:100px;
+  padding:0 7px;font-size:.72rem}
+.tab:not(.on) .pill{background:var(--beige-dark);color:var(--muted)}
+/* Keep all four tabs on screen on a phone instead of pushing one off the edge.
+   Must come after the base .tab rules — a media query adds no specificity. */
+@media(max-width:430px){
+  .tabs{gap:3px;padding-inline:10px}
+  .tab{padding:8px 9px;font-size:.76rem;letter-spacing:0}
+  .tab .pill{margin-left:4px;padding:0 5px;font-size:.68rem}
+}
+
+/* ===== TOOLBAR ===== */
+.toolbar{display:flex;gap:10px;align-items:center;margin:18px 0 16px;flex-wrap:wrap}
+.search{flex:1;min-width:180px;position:relative}
+.search input{width:100%;padding:11px 14px 11px 38px;border-radius:100px;border:1.5px solid var(--beige-dark);
+  background:var(--white);outline:none;transition:.15s}
+.search input:focus{border-color:var(--green)}
+.search span{position:absolute;left:14px;top:50%;transform:translateY(-50%);opacity:.4;font-size:.9rem}
+.btn{padding:11px 20px;border-radius:100px;font-weight:600;font-size:.88rem;transition:.15s;white-space:nowrap}
+.btn-dark{background:var(--dark);color:var(--white)}
+.btn-dark:hover{background:#000}
+.btn-ghost{background:var(--white);border:1.5px solid var(--beige-dark)}
+.btn-ghost:hover{border-color:var(--muted)}
+.btn-sm{padding:7px 14px;font-size:.78rem}
+.btn-danger{color:#a33;border-color:#f0d5d5}
+.btn-danger:hover{background:#fdf0f0;border-color:#d99}
+
+/* ===== STAT STRIP ===== */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:20px}
+.statcard{background:var(--white);border:1px solid var(--beige-dark);border-radius:var(--radius-sm);padding:14px 16px}
+.statcard .n{font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:700;line-height:1.1;
+  overflow-wrap:anywhere}
+.statcard .l{font-size:.68rem;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);
+  font-weight:600;margin-top:3px}
+.statcard.accent-green{background:var(--green-light);border-color:var(--green)}
+.statcard.accent-pink{background:var(--pink-light);border-color:var(--pink)}
+.statcard.accent-amber{background:#FBF4E8;border-color:var(--amber)}
+
+/* ===== COLLAB CARD ===== */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.card{background:var(--white);border:1px solid var(--beige-dark);border-radius:var(--radius);padding:18px;
+  box-shadow:var(--shadow);display:flex;flex-direction:column;gap:12px;transition:.18s}
+.card:hover{box-shadow:0 6px 22px rgba(42,42,42,.09);transform:translateY(-1px)}
+.card.is-late{border-color:#e9bcbc}
+.card-top{display:flex;align-items:flex-start;gap:10px}
+.card-brand{font-family:'Playfair Display',serif;font-size:1.22rem;font-weight:700;line-height:1.25;
+  overflow-wrap:anywhere;flex:1;text-align:left}
+.card-brand:hover{color:var(--pink-deep)}
+.badge{display:inline-block;padding:3px 10px;border-radius:100px;font-size:.66rem;font-weight:700;
+  letter-spacing:.07em;text-transform:uppercase;white-space:nowrap}
+.b-lead{background:var(--beige-dark);color:var(--muted)}
+.b-active{background:var(--green);color:#3f6b55}
+.b-delivered{background:var(--pink);color:var(--pink-deep)}
+.b-done{background:var(--dark);color:var(--white)}
+.b-unpaid{background:#FBF4E8;color:var(--amber-deep)}
+.b-invoiced{background:var(--amber);color:var(--amber-deep)}
+.b-paid{background:var(--green-light);color:var(--green-deep)}
+.b-gift{background:var(--pink-light);color:var(--pink-deep)}
+.b-late{background:#FBE4E4;color:#a33}
+.badgerow{display:flex;flex-wrap:wrap;gap:6px}
+.card-money{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700}
+.card-money small{font-family:'Inter',sans-serif;font-size:.72rem;color:var(--muted);font-weight:500}
+.meta{font-size:.8rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:4px 14px}
+.meta b{color:var(--dark);font-weight:600}
+.deliv{display:flex;flex-direction:column;gap:5px}
+.deliv-item{display:flex;gap:9px;align-items:flex-start;font-size:.86rem;text-align:left;width:100%;
+  padding:3px 0;line-height:1.45}
+.deliv-box{flex:0 0 18px;height:18px;margin-top:2px;border-radius:5px;border:1.5px solid var(--beige-dark);
+  display:grid;place-items:center;font-size:.72rem;font-weight:700;line-height:1;color:var(--white);transition:.15s}
+.deliv-item.done .deliv-box{background:var(--green-deep);border-color:var(--green-deep);color:var(--white)}
+/* Scoped to .deliv-txt on purpose: a bare `span` here would also grey out the
+   checkmark inside .deliv-box and make it invisible against the green. */
+.deliv-item.done .deliv-txt{text-decoration:line-through;color:var(--muted)}
+.deliv-more{font-size:.76rem;color:var(--muted);font-style:italic}
+.snip{font-size:.82rem;color:var(--muted);background:var(--beige);border-radius:9px;padding:9px 11px;
+  border-left:2.5px solid var(--green);white-space:pre-wrap;overflow-wrap:anywhere}
+.snip b{display:block;font-size:.62rem;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);
+  margin-bottom:3px;font-weight:700}
+.card-acts{display:flex;gap:7px;flex-wrap:wrap;margin-top:auto;padding-top:4px}
+.linkchips{display:flex;flex-wrap:wrap;gap:6px}
+.linkchip{font-size:.74rem;padding:4px 11px;border-radius:100px;background:var(--green-light);
+  color:var(--green-deep);font-weight:600;border:1px solid var(--green)}
+.linkchip:hover{background:var(--green)}
+
+/* ===== ARCHIVE / GROUPS ===== */
+.grouphead{display:flex;align-items:baseline;gap:12px;margin:26px 0 12px;padding-bottom:8px;
+  border-bottom:1px solid var(--beige-dark)}
+.grouphead h3{font-size:1.15rem}
+.grouphead .cnt{font-size:.75rem;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.07em}
+.grouphead .amt{margin-left:auto;font-size:.85rem;font-weight:600;color:var(--green-deep)}
+
+/* ===== BARS (year view) ===== */
+.bars{display:grid;grid-template-columns:repeat(12,1fr);gap:5px;align-items:end;height:150px;
+  background:var(--white);border:1px solid var(--beige-dark);border-radius:var(--radius-sm);padding:14px 12px 8px}
+.bar{display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%;gap:5px}
+.bar i{width:100%;background:var(--green);border-radius:5px 5px 2px 2px;min-height:3px;transition:.3s;display:block}
+.bar.zero i{background:var(--beige-dark)}
+.bar em{font-style:normal;font-size:.68rem;color:var(--muted);font-weight:600}
+.bar u{text-decoration:none;font-size:.62rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.yearnav{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.yearnav .y{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;min-width:70px;text-align:center}
+.brandtable{background:var(--white);border:1px solid var(--beige-dark);border-radius:var(--radius-sm);overflow:hidden}
+.brow{display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid var(--beige-dark);
+  width:100%;text-align:left;transition:.15s}
+.brow:last-child{border-bottom:none}
+.brow:hover{background:var(--beige)}
+.brow .bn{font-weight:600;flex:1;overflow-wrap:anywhere}
+.brow .bc{font-size:.75rem;color:var(--muted);white-space:nowrap}
+.brow .bm{font-weight:600;white-space:nowrap;font-size:.9rem}
+
+/* ===== EMPTY ===== */
+.empty{text-align:center;padding:54px 22px;background:var(--white);border:1px dashed var(--beige-dark);
+  border-radius:var(--radius)}
+.empty .e{font-size:2.2rem;margin-bottom:10px}
+.empty h3{font-size:1.3rem;margin-bottom:6px}
+.empty p{color:var(--muted);font-size:.9rem;margin-bottom:18px;max-width:340px;margin-inline:auto}
+
+/* ===== MODAL ===== */
+.overlay{position:fixed;inset:0;background:rgba(42,42,42,.42);backdrop-filter:blur(3px);z-index:100;
+  display:flex;align-items:flex-end;justify-content:center;padding:0}
+@media(min-width:700px){.overlay{align-items:center;padding:28px}}
+.sheet{background:var(--beige);width:100%;max-width:620px;max-height:94vh;overflow-y:auto;
+  border-radius:22px 22px 0 0;-webkit-overflow-scrolling:touch}
+@media(min-width:700px){.sheet{border-radius:var(--radius)}}
+.sheet-head{position:sticky;top:0;background:var(--beige);padding:18px 20px 12px;display:flex;
+  align-items:center;gap:12px;border-bottom:1px solid var(--beige-dark);z-index:2}
+.sheet-head h2{font-size:1.3rem;flex:1;overflow-wrap:anywhere}
+.sheet-body{padding:18px 20px 26px}
+.sheet-foot{position:sticky;bottom:0;background:var(--beige);border-top:1px solid var(--beige-dark);
+  padding:12px 20px calc(12px + env(safe-area-inset-bottom));display:flex;gap:9px;z-index:2}
+.sheet-foot .btn{flex:1;text-align:center}
+fieldset{border:none;margin-bottom:18px}
+legend{font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:700;
+  margin-bottom:9px;padding:0}
+.f{margin-bottom:11px}
+.f label{display:block;font-size:.76rem;font-weight:600;color:var(--muted);margin-bottom:4px}
+.f input,.f select,.f textarea,.listrow input{width:100%;padding:11px 13px;border-radius:var(--radius-sm);
+  border:1.5px solid var(--beige-dark);background:var(--white);outline:none;transition:.15s}
+.f input:focus,.f select:focus,.f textarea:focus,.listrow input:focus{border-color:var(--green)}
+.f textarea{resize:vertical;min-height:78px;line-height:1.5}
+.f select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath fill='%237A6E6A' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 13px center;background-size:11px;padding-right:34px}
+.row{display:flex;gap:10px}
+.row>*{flex:1;min-width:0}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:7px}
+.chip{font-size:.74rem;padding:5px 11px;border-radius:100px;background:var(--white);
+  border:1.5px solid var(--beige-dark);color:var(--muted);font-weight:500;transition:.15s}
+.chip:hover{border-color:var(--green);color:var(--dark);background:var(--green-light)}
+.listrow{display:flex;gap:7px;margin-bottom:7px;align-items:stretch}
+.listrow input{flex:1;min-width:0}
+.xbtn{flex:0 0 42px;border-radius:var(--radius-sm);background:var(--white);border:1.5px solid var(--beige-dark);
+  color:var(--muted);display:grid;place-items:center;font-size:1.1rem;line-height:1}
+.xbtn:hover{background:#fdf0f0;border-color:#e9bcbc;color:#a33}
+.addrow{font-size:.8rem;font-weight:600;color:var(--green-deep);padding:7px 0}
+.addrow:hover{color:var(--dark)}
+.hint{font-size:.72rem;color:var(--muted);margin-top:4px;line-height:1.45}
+.req{color:var(--pink-deep)}
+
+/* ===== DETAIL VIEW ===== */
+.dl{display:grid;grid-template-columns:120px 1fr;gap:9px 14px;font-size:.9rem;margin-bottom:16px}
+.dl dt{font-size:.7rem;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);font-weight:700;
+  padding-top:3px}
+.dl dd{overflow-wrap:anywhere;white-space:pre-wrap}
+@media(max-width:520px){.dl{grid-template-columns:1fr;gap:2px 0}.dl dd{margin-bottom:11px}}
+.hist{background:var(--white);border:1px solid var(--beige-dark);border-radius:var(--radius-sm);
+  padding:13px 15px;margin-bottom:9px;text-align:left;width:100%;transition:.15s}
+.hist:hover{border-color:var(--green)}
+.hist .h1{display:flex;gap:10px;align-items:center;margin-bottom:3px}
+.hist .h1 b{flex:1;overflow-wrap:anywhere}
+
+/* ===== TOAST ===== */
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:26px;background:var(--dark);color:var(--white);
+  padding:12px 22px;border-radius:100px;font-size:.85rem;font-weight:500;z-index:300;box-shadow:0 6px 22px rgba(0,0,0,.2);
+  opacity:0;pointer-events:none;transition:.25s;max-width:88vw;text-align:center}
+.toast.show{opacity:1;bottom:34px}
+.fab{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom));width:56px;height:56px;
+  border-radius:50%;background:var(--dark);color:var(--white);font-size:1.7rem;line-height:1;display:grid;
+  place-items:center;box-shadow:0 6px 20px rgba(42,42,42,.28);z-index:50}
+@media(min-width:700px){.fab{display:none}}
+/* Keep .wrap's horizontal padding — a bare `padding` shorthand here would
+   zero it out and push content flush against the screen edge. */
+.mainpad{padding-top:20px;padding-bottom:100px}
+@media(max-width:520px){.hide-sm{display:none}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="top-in">
+    <div class="brandmark">Collab CRM<small>Claudia Ramstedt</small></div>
+    <div class="top-spacer"></div>
+    <button class="iconbtn" id="btnExport" title="Download a backup of all your collabs">⬇</button>
+    <button class="iconbtn" id="btnImport" title="Restore from a backup file">⬆</button>
+    <button class="btn btn-dark btn-sm hide-sm" id="btnNewTop">+ New collab</button>
+  </div>
+  <nav class="tabs" id="tabs"></nav>
+</header>
+
+<main class="wrap mainpad" id="main"></main>
+
+<button class="fab" id="btnNewFab" aria-label="New collab">+</button>
+<div id="modalHost"></div>
+<div class="toast" id="toast"></div>
+<input type="file" id="fileIn" accept="application/json,.json" style="display:none" />
+
+<script>
+(function(){
+"use strict";
+
+/* ========== STORAGE ========== */
+var KEY="claudia_collab_crm_v1";
+var db={version:1,collabs:[]};
+var storageOK=true;
+
+function load(){
+  try{
+    var raw=localStorage.getItem(KEY);
+    if(raw){
+      var p=JSON.parse(raw);
+      if(p&&Array.isArray(p.collabs)) db=p;
+    }
+  }catch(e){ storageOK=false; console.warn("Could not read saved data:",e); }
+}
+function save(){
+  try{ localStorage.setItem(KEY,JSON.stringify(db)); }
+  catch(e){ storageOK=false; toast("⚠ Could not save — storage is full or blocked"); console.warn(e); }
+}
+function uid(){ return Date.now().toString(36)+Math.random().toString(36).slice(2,8); }
+
+/* ========== HELPERS ========== */
+function esc(s){
+  return String(s==null?"":s).replace(/[&<>"']/g,function(c){
+    return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];
+  });
+}
+function safeUrl(u){
+  var s=String(u||"").trim();
+  if(/^https?:\/\//i.test(s)) return s;
+  if(/^[\w.-]+\.[a-z]{2,}/i.test(s)) return "https://"+s;
+  return "";
+}
+var MONTHS=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+var MONTHS_LONG=["January","February","March","April","May","June","July","August","September","October","November","December"];
+function todayISO(){
+  var d=new Date();
+  return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+}
+function fmtDate(iso){
+  if(!iso) return "";
+  var p=String(iso).split("-");
+  if(p.length!==3) return iso;
+  return Number(p[2])+" "+MONTHS[Number(p[1])-1]+" "+p[0];
+}
+function daysUntil(iso){
+  if(!iso) return null;
+  var t=new Date(todayISO()+"T00:00:00").getTime();
+  var d=new Date(iso+"T00:00:00").getTime();
+  if(isNaN(d)) return null;
+  return Math.round((d-t)/86400000);
+}
+function deadlineLabel(iso){
+  var n=daysUntil(iso);
+  if(n===null) return "";
+  if(n<0) return Math.abs(n)+ (Math.abs(n)===1?" day late":" days late");
+  if(n===0) return "Due today";
+  if(n===1) return "Due tomorrow";
+  return "Due in "+n+" days";
+}
+var CUR={EUR:"€",SEK:"kr",USD:"$",GBP:"£"};
+function money(amount,cur){
+  var n=Number(amount)||0;
+  var sym=CUR[cur]||cur||"€";
+  var s=n%1===0?String(n):n.toFixed(2);
+  s=s.replace(/\B(?=(\d{3})+(?!\d))/g," ");
+  return cur==="SEK"?(s+" kr"):(sym+s);
+}
+/* Sums are kept per-currency so we never invent an exchange rate. */
+function sumMap(){ return {}; }
+function addTo(map,cur,amount){
+  var c=cur||"EUR";
+  map[c]=(map[c]||0)+(Number(amount)||0);
+}
+function fmtSum(map){
+  var ks=Object.keys(map).filter(function(k){return map[k]>0;});
+  if(!ks.length) return money(0,"EUR");
+  return ks.map(function(k){return money(map[k],k);}).join(" + ");
+}
+
+/* ========== MODEL ========== */
+var STATUS={
+  lead:{label:"Lead",cls:"b-lead"},
+  active:{label:"Active",cls:"b-active"},
+  delivered:{label:"Delivered",cls:"b-delivered"},
+  done:{label:"Done",cls:"b-done"}
+};
+var PAY={
+  na:{label:"",cls:""},
+  unpaid:{label:"Unpaid",cls:"b-unpaid"},
+  invoiced:{label:"Invoiced",cls:"b-invoiced"},
+  paid:{label:"Paid",cls:"b-paid"}
+};
+function blank(){
+  return {
+    /* Defaults to "active": most collabs get added once they're already booked. */
+    id:uid(), brand:"", status:"active",
+    dealType:"paid", price:"", currency:"EUR", giftedValue:"",
+    payStatus:"unpaid", invoiceNo:"", invoiceDate:"", paidDate:"",
+    deliverables:[], usageRights:"", exclusivity:"",
+    brief:"", notes:"", deadline:"", startDate:todayISO(), completedDate:"",
+    contactName:"", contactEmail:"", links:[],
+    createdAt:new Date().toISOString()
+  };
+}
+/* Fill in any field a older/imported record is missing. */
+function normalize(c){
+  var b=blank();
+  for(var k in b){ if(!(k in c)) c[k]=b[k]; }
+  if(!Array.isArray(c.deliverables)) c.deliverables=[];
+  if(!Array.isArray(c.links)) c.links=[];
+  c.deliverables=c.deliverables.map(function(d){
+    return typeof d==="string"?{text:d,done:false}:{text:String(d.text||""),done:!!d.done};
+  });
+  c.links=c.links.filter(function(l){return l&&l.url;})
+    .map(function(l){return {label:String(l.label||"Link"),url:String(l.url)};});
+  if(!STATUS[c.status]) c.status="active";
+  if(!PAY[c.payStatus]) c.payStatus="unpaid";
+  if(!c.id) c.id=uid();
+  return c;
+}
+function all(){ return db.collabs.map(normalize); }
+function byId(id){
+  for(var i=0;i<db.collabs.length;i++) if(db.collabs[i].id===id) return normalize(db.collabs[i]);
+  return null;
+}
+function put(c){
+  for(var i=0;i<db.collabs.length;i++){
+    if(db.collabs[i].id===c.id){ db.collabs[i]=c; save(); return; }
+  }
+  db.collabs.unshift(c); save();
+}
+function remove(id){
+  db.collabs=db.collabs.filter(function(c){return c.id!==id;});
+  save();
+}
+function isOpen(c){ return c.status!=="done"; }
+/* The date a collab counts toward for monthly/yearly stats. */
+function countDate(c){ return c.completedDate||c.deadline||c.startDate||""; }
+function earned(c){
+  if(c.dealType==="gifted") return 0;
+  return Number(c.price)||0;
+}
+function giftValue(c){
+  if(c.dealType==="paid") return 0;
+  return Number(c.giftedValue)||0;
+}
+
+/* ========== STATE ========== */
+var state={tab:"active",q:"",year:new Date().getFullYear(),brand:null};
+
+/* ========== SEARCH / FILTER ========== */
+function matches(c,q){
+  if(!q) return true;
+  var hay=[c.brand,c.brief,c.usageRights,c.notes,c.contactName,c.contactEmail,c.exclusivity,c.invoiceNo]
+    .concat(c.deliverables.map(function(d){return d.text;}))
+    .join(" ").toLowerCase();
+  return hay.indexOf(q.toLowerCase())>=0;
+}
+function openCollabs(){
+  return all().filter(isOpen).filter(function(c){return matches(c,state.q);}).sort(function(a,b){
+    var ad=a.deadline||"9999", bd=b.deadline||"9999";
+    if(ad!==bd) return ad<bd?-1:1;
+    return (a.brand||"").localeCompare(b.brand||"");
+  });
+}
+function doneCollabs(){
+  return all().filter(function(c){return !isOpen(c);}).filter(function(c){return matches(c,state.q);})
+    .sort(function(a,b){
+      var ad=countDate(a)||"0", bd=countDate(b)||"0";
+      return ad<bd?1:(ad>bd?-1:0);
+    });
+}
+
+/* ========== RENDER: TABS ========== */
+function renderTabs(){
+  var openN=all().filter(isOpen).length;
+  var doneN=all().length-openN;
+  var tabs=[
+    ["active","Dashboard",openN],
+    ["archive","Archive",doneN],
+    ["year","Stats",null],
+    ["brands","Brands",null]
+  ];
+  document.getElementById("tabs").innerHTML=tabs.map(function(t){
+    return '<button class="tab'+(state.tab===t[0]?" on":"")+'" data-tab="'+t[0]+'">'+esc(t[1])+
+      (t[2]!==null?'<span class="pill">'+t[2]+"</span>":"")+"</button>";
+  }).join("");
+}
+
+/* ========== RENDER: CARD ========== */
+function statCard(n,l,accent){
+  return '<div class="statcard'+(accent?" accent-"+accent:"")+'"><div class="n">'+esc(n)+
+    '</div><div class="l">'+esc(l)+"</div></div>";
+}
+function badge(txt,cls){ return '<span class="badge '+cls+'">'+esc(txt)+"</span>"; }
+
+function cardHTML(c){
+  var late=isOpen(c)&&c.deadline&&daysUntil(c.deadline)<0;
+  var h='<article class="card'+(late?" is-late":"")+'" data-id="'+c.id+'">';
+
+  h+='<div class="card-top"><button class="card-brand" data-act="open" data-id="'+c.id+'">'+
+     esc(c.brand||"Untitled")+"</button>"+badge(STATUS[c.status].label,STATUS[c.status].cls)+"</div>";
+
+  var bl=[];
+  if(c.dealType!=="paid") bl.push(badge(c.dealType==="gifted"?"Gifted":"Paid + gifted","b-gift"));
+  if(c.dealType!=="gifted"&&PAY[c.payStatus].label) bl.push(badge(PAY[c.payStatus].label,PAY[c.payStatus].cls));
+  if(late) bl.push(badge(deadlineLabel(c.deadline),"b-late"));
+  if(bl.length) h+='<div class="badgerow">'+bl.join("")+"</div>";
+
+  var mparts=[];
+  if(earned(c)>0) mparts.push(money(earned(c),c.currency));
+  if(giftValue(c)>0) mparts.push('<small>gifted '+esc(money(giftValue(c),c.currency))+"</small>");
+  if(mparts.length) h+='<div class="card-money">'+mparts.join(" ")+"</div>";
+
+  var m=[];
+  if(c.deadline&&!late) m.push("<b>"+esc(deadlineLabel(c.deadline))+"</b> · "+esc(fmtDate(c.deadline)));
+  else if(c.deadline&&late) m.push("Deadline "+esc(fmtDate(c.deadline)));
+  if(c.completedDate) m.push("Completed "+esc(fmtDate(c.completedDate)));
+  if(c.contactName) m.push(esc(c.contactName));
+  if(m.length) h+='<div class="meta">'+m.map(function(x){return "<span>"+x+"</span>";}).join("")+"</div>";
+
+  if(c.deliverables.length){
+    var doneN=c.deliverables.filter(function(d){return d.done;}).length;
+    h+='<div class="deliv">';
+    c.deliverables.slice(0,4).forEach(function(d,i){
+      h+='<button class="deliv-item'+(d.done?" done":"")+'" data-act="toggle" data-id="'+c.id+'" data-i="'+i+'">'+
+         '<span class="deliv-box">'+(d.done?"✓":"")+'</span><span class="deliv-txt">'+esc(d.text)+"</span></button>";
+    });
+    if(c.deliverables.length>4)
+      h+='<div class="deliv-more">+'+(c.deliverables.length-4)+" more · "+doneN+"/"+c.deliverables.length+" done</div>";
+    h+="</div>";
+  }
+
+  if(c.usageRights) h+='<div class="snip"><b>Usage rights</b>'+esc(c.usageRights)+"</div>";
+
+  if(c.links.length){
+    h+='<div class="linkchips">'+c.links.map(function(l){
+      var u=safeUrl(l.url);
+      return u?'<a class="linkchip" href="'+esc(u)+'" target="_blank" rel="noopener">'+esc(l.label||"Link")+" ↗</a>":"";
+    }).join("")+"</div>";
+  }
+
+  h+='<div class="card-acts">';
+  h+='<button class="btn btn-ghost btn-sm" data-act="open" data-id="'+c.id+'">View</button>';
+  h+='<button class="btn btn-ghost btn-sm" data-act="edit" data-id="'+c.id+'">Edit</button>';
+  if(isOpen(c)) h+='<button class="btn btn-dark btn-sm" data-act="finish" data-id="'+c.id+'">✓ Mark done</button>';
+  else h+='<button class="btn btn-ghost btn-sm" data-act="reopen" data-id="'+c.id+'">↩ Reopen</button>';
+  h+="</div></article>";
+  return h;
+}
+
+/* ========== VIEW: DASHBOARD ========== */
+function viewActive(){
+  var list=openCollabs(), everyone=all();
+  var now=new Date(), yr=now.getFullYear(), mo=now.getMonth();
+
+  var thisMonth=everyone.filter(function(c){
+    var d=countDate(c);
+    return !isOpen(c)&&d&&Number(d.slice(0,4))===yr&&Number(d.slice(5,7))-1===mo;
+  }).length;
+  var thisYear=everyone.filter(function(c){
+    var d=countDate(c);
+    return !isOpen(c)&&d&&Number(d.slice(0,4))===yr;
+  }).length;
+
+  var owed=sumMap();
+  everyone.forEach(function(c){
+    if(c.dealType!=="gifted"&&c.payStatus!=="paid"&&earned(c)>0) addTo(owed,c.currency,earned(c));
+  });
+  var paidYear=sumMap();
+  everyone.forEach(function(c){
+    var d=c.paidDate||countDate(c);
+    if(c.payStatus==="paid"&&d&&Number(d.slice(0,4))===yr) addTo(paidYear,c.currency,earned(c));
+  });
+
+  var h='<div class="stats">'+
+    statCard(list.length,"Open collabs","green")+
+    statCard(thisMonth,MONTHS_LONG[mo]+" — done")+
+    statCard(thisYear,"Done in "+yr)+
+    statCard(fmtSum(paidYear),"Paid in "+yr,"green")+
+    statCard(fmtSum(owed),"Waiting on payment","amber")+
+  "</div>";
+
+  h+=toolbarHTML("Search brand, brief, deliverable…");
+
+  if(!list.length){
+    h+=state.q
+      ? emptyHTML("🔍","No matches","Nothing open matches “"+esc(state.q)+"”. Check the Archive tab for finished collabs.",false)
+      : emptyHTML("✦","Nothing on your plate","Every collab is finished — or you haven't added one yet. Add your first and it'll show up here.",true);
+  }else{
+    h+='<div class="grid">'+list.map(cardHTML).join("")+"</div>";
+  }
+  return h;
+}
+
+/* ========== VIEW: ARCHIVE ========== */
+function viewArchive(){
+  var list=doneCollabs();
+  var h=toolbarHTML("Search finished collabs…");
+  if(!list.length){
+    h+=emptyHTML("📦","Archive is empty",
+      "When you mark a collab done it moves here — off the dashboard, but never lost.",false);
+    return h;
+  }
+  var groups={},order=[];
+  list.forEach(function(c){
+    var d=countDate(c);
+    var k=d?d.slice(0,7):"unknown";
+    if(!groups[k]){groups[k]=[];order.push(k);}
+    groups[k].push(c);
+  });
+  order.forEach(function(k){
+    var g=groups[k];
+    var title;
+    if(k==="unknown") title="No date set";
+    else title=MONTHS_LONG[Number(k.slice(5,7))-1]+" "+k.slice(0,4);
+    var sum=sumMap();
+    g.forEach(function(c){ addTo(sum,c.currency,earned(c)); });
+    h+='<div class="grouphead"><h3>'+esc(title)+'</h3><span class="cnt">'+g.length+
+       (g.length===1?" collab":" collabs")+'</span><span class="amt">'+esc(fmtSum(sum))+"</span></div>";
+    h+='<div class="grid">'+g.map(cardHTML).join("")+"</div>";
+  });
+  return h;
+}
+
+/* ========== VIEW: YEAR & STATS ========== */
+function viewYear(){
+  var y=state.year;
+  var done=all().filter(function(c){
+    var d=countDate(c);
+    return !isOpen(c)&&d&&Number(d.slice(0,4))===y;
+  });
+  var perMonth=new Array(12).fill(0);
+  done.forEach(function(c){
+    var m=Number(countDate(c).slice(5,7))-1;
+    if(m>=0&&m<12) perMonth[m]++;
+  });
+  var max=Math.max.apply(null,perMonth.concat([1]));
+
+  var totalPaid=sumMap(), totalGift=sumMap(), outstanding=sumMap();
+  done.forEach(function(c){
+    addTo(totalPaid,c.currency,earned(c));
+    addTo(totalGift,c.currency,giftValue(c));
+    if(c.dealType!=="gifted"&&c.payStatus!=="paid") addTo(outstanding,c.currency,earned(c));
+  });
+  var brands={};
+  done.forEach(function(c){ brands[(c.brand||"Untitled").trim()]=true; });
+  /* For the current year, average over months elapsed so far — not a full 12. */
+  var now=new Date();
+  var monthsSoFar=(y===now.getFullYear())?(now.getMonth()+1):12;
+  var avgPerMonth=done.length?(Math.round(done.length/monthsSoFar*10)/10):0;
+
+  var years={};
+  all().forEach(function(c){ var d=countDate(c); if(d) years[d.slice(0,4)]=true; });
+  years[new Date().getFullYear()]=true;
+  var ylist=Object.keys(years).sort();
+
+  var h='<div class="yearnav">'+
+    '<button class="iconbtn" data-act="year" data-y="'+(y-1)+'">‹</button>'+
+    '<span class="y">'+y+"</span>"+
+    '<button class="iconbtn" data-act="year" data-y="'+(y+1)+'">›</button>'+
+    '<span class="hint" style="margin:0">Have data in: '+esc(ylist.join(", "))+"</span></div>";
+
+  h+='<div class="stats">'+
+    statCard(done.length,"Collabs completed","green")+
+    statCard(Object.keys(brands).length,"Different brands")+
+    statCard(fmtSum(totalPaid),"Total invoiced","green")+
+    statCard(fmtSum(outstanding),"Still unpaid","amber")+
+    statCard(fmtSum(totalGift),"Gifted value","pink")+
+    statCard(avgPerMonth,"Avg per month")+
+  "</div>";
+
+  h+='<div class="bars">'+perMonth.map(function(n,i){
+    return '<div class="bar'+(n===0?" zero":"")+'" title="'+esc(MONTHS_LONG[i]+": "+n+
+      (n===1?" collab":" collabs"))+'">'+
+      "<em>"+(n||"")+'</em><i style="height:'+(n/max*100)+'%"></i><u>'+MONTHS[i]+"</u></div>";
+  }).join("")+"</div>";
+
+  if(!done.length){
+    h+='<p class="hint" style="text-align:center;margin-top:16px">No collabs marked done in '+y+" yet.</p>";
+  }
+  return h;
+}
+
+/* ========== VIEW: BRANDS ========== */
+function viewBrands(){
+  var map={};
+  all().forEach(function(c){
+    var k=(c.brand||"Untitled").trim();
+    var lk=k.toLowerCase();
+    if(!map[lk]) map[lk]={name:k,items:[],sum:sumMap(),open:0};
+    map[lk].items.push(c);
+    addTo(map[lk].sum,c.currency,earned(c));
+    if(isOpen(c)) map[lk].open++;
+  });
+  var rows=Object.keys(map).map(function(k){return map[k];})
+    .filter(function(b){ return !state.q||b.name.toLowerCase().indexOf(state.q.toLowerCase())>=0; })
+    .sort(function(a,b){ return b.items.length-a.items.length||a.name.localeCompare(b.name); });
+
+  var h=toolbarHTML("Search brands…");
+  if(!rows.length){
+    h+=emptyHTML("🏷","No brands yet","Add a collab and the brand shows up here with its whole history.",true);
+    return h;
+  }
+  h+='<div class="brandtable">'+rows.map(function(b){
+    return '<button class="brow" data-act="brand" data-brand="'+esc(b.name)+'">'+
+      '<span class="bn">'+esc(b.name)+(b.open?' <span class="badge b-active">'+b.open+" open</span>":"")+"</span>"+
+      '<span class="bc">'+b.items.length+(b.items.length===1?" collab":" collabs")+"</span>"+
+      '<span class="bm">'+esc(fmtSum(b.sum))+"</span></button>";
+  }).join("")+"</div>";
+  return h;
+}
+
+/* ========== SHARED CHROME ========== */
+function toolbarHTML(placeholder){
+  return '<div class="toolbar"><div class="search"><span>🔍</span>'+
+    '<input id="q" type="search" placeholder="'+esc(placeholder)+'" value="'+esc(state.q)+'" /></div>'+
+    '<button class="btn btn-dark hide-sm" data-act="new">+ New collab</button></div>';
+}
+function emptyHTML(emoji,title,text,showBtn){
+  return '<div class="empty"><div class="e">'+emoji+"</div><h3>"+esc(title)+"</h3><p>"+text+"</p>"+
+    (showBtn?'<button class="btn btn-dark" data-act="new">+ Add a collab</button>':"")+"</div>";
+}
+
+function render(){
+  renderTabs();
+  var main=document.getElementById("main");
+  var scroll=window.scrollY;
+  if(state.tab==="active") main.innerHTML=viewActive();
+  else if(state.tab==="archive") main.innerHTML=viewArchive();
+  else if(state.tab==="year") main.innerHTML=viewYear();
+  else main.innerHTML=viewBrands();
+  window.scrollTo(0,scroll);
+  if(!storageOK){
+    var w=document.createElement("div");
+    w.className="hint";
+    w.style.cssText="text-align:center;margin-top:20px;color:#a33";
+    w.textContent="⚠ This browser is blocking local storage, so changes won't be remembered. Try a normal (non-private) window.";
+    main.appendChild(w);
+  }
+}
+
+/* ========== MODAL PLUMBING ========== */
+function closeModal(){ document.getElementById("modalHost").innerHTML=""; document.body.style.overflow=""; }
+function openModal(html){
+  document.getElementById("modalHost").innerHTML='<div class="overlay" data-overlay="1">'+html+"</div>";
+  document.body.style.overflow="hidden";
+  var host=document.getElementById("modalHost");
+  host.querySelector(".sheet").scrollTop=0;
+}
+function toast(msg){
+  var t=document.getElementById("toast");
+  t.textContent=msg;
+  t.classList.add("show");
+  clearTimeout(t._t);
+  t._t=setTimeout(function(){ t.classList.remove("show"); },2600);
+}
+
+/* ========== FORM ========== */
+var RIGHTS_PRESETS=["Organic only","Paid ads — 3 months","Paid ads — 6 months","Paid ads — 12 months",
+  "Whitelisting / Spark Ads","Perpetual, all channels","Website & email only"];
+var DELIV_PRESETS=["1 TikTok video","1 Instagram Reel","3 photos","Story set (3 frames)","Raw footage","Voiceover"];
+
+function listRowHTML(kind,val1,val2){
+  if(kind==="deliv"){
+    return '<div class="listrow" data-kind="deliv">'+
+      '<input type="text" class="d-text" placeholder="e.g. 1 TikTok video" value="'+esc(val1)+'" />'+
+      '<button type="button" class="xbtn" data-act="rmrow">×</button></div>';
+  }
+  /* Deliberately type="text", not type="url": a pasted link without https://
+     would otherwise fail HTML5 validation and block the whole save. We add the
+     scheme ourselves in safeUrl() instead. */
+  return '<div class="listrow" data-kind="link">'+
+    '<input type="text" class="l-label" placeholder="Label" style="flex:0 0 34%" value="'+esc(val1)+'" />'+
+    '<input type="text" inputmode="url" class="l-url" placeholder="Paste link…" value="'+esc(val2)+'" />'+
+    '<button type="button" class="xbtn" data-act="rmrow">×</button></div>';
+}
+
+function formHTML(c,isNew){
+  var h='<div class="sheet"><form id="collabForm">';
+  h+='<div class="sheet-head"><h2>'+(isNew?"New collab":esc(c.brand||"Edit collab"))+"</h2>"+
+     '<button type="button" class="iconbtn" data-act="close">×</button></div>';
+  h+='<div class="sheet-body">';
+
+  h+='<fieldset><legend>The basics</legend>';
+  h+='<div class="f"><label>Brand <span class="req">*</span></label>'+
+     '<input name="brand" type="text" required placeholder="e.g. Magnum" value="'+esc(c.brand)+'" /></div>';
+  h+='<div class="row">'+
+     '<div class="f"><label>Status</label><select name="status">'+
+       Object.keys(STATUS).map(function(k){
+         return '<option value="'+k+'"'+(c.status===k?" selected":"")+">"+STATUS[k].label+"</option>";
+       }).join("")+"</select></div>"+
+     '<div class="f"><label>Deadline</label><input name="deadline" type="date" value="'+esc(c.deadline)+'" /></div>'+
+     "</div>";
+  h+='<p class="hint">Setting status to <b>Done</b> moves it off the dashboard into the Archive — it still counts in your stats.</p>';
+  h+="</fieldset>";
+
+  h+='<fieldset><legend>The deal</legend>';
+  h+='<div class="f"><label>Type</label><select name="dealType">'+
+     '<option value="paid"'+(c.dealType==="paid"?" selected":"")+">Paid</option>"+
+     '<option value="gifted"'+(c.dealType==="gifted"?" selected":"")+">Gifted only</option>"+
+     '<option value="both"'+(c.dealType==="both"?" selected":"")+">Paid + gifted product</option>"+
+     "</select></div>";
+  h+='<div class="row">'+
+     '<div class="f"><label>Fee</label><input name="price" type="number" inputmode="decimal" min="0" step="any" placeholder="0" value="'+esc(c.price)+'" /></div>'+
+     '<div class="f"><label>Currency</label><select name="currency">'+
+       ["EUR","SEK","USD","GBP"].map(function(k){
+         return '<option value="'+k+'"'+(c.currency===k?" selected":"")+">"+k+" ("+CUR[k]+")</option>";
+       }).join("")+"</select></div>"+
+     '<div class="f"><label>Gifted value</label><input name="giftedValue" type="number" inputmode="decimal" min="0" step="any" placeholder="0" value="'+esc(c.giftedValue)+'" /></div>'+
+     "</div>";
+  h+='<div class="row">'+
+     '<div class="f"><label>Payment</label><select name="payStatus">'+
+       ["unpaid","invoiced","paid"].map(function(k){
+         return '<option value="'+k+'"'+(c.payStatus===k?" selected":"")+">"+PAY[k].label+"</option>";
+       }).join("")+"</select></div>"+
+     '<div class="f"><label>Invoice #</label><input name="invoiceNo" type="text" placeholder="optional" value="'+esc(c.invoiceNo)+'" /></div>'+
+     "</div>";
+  h+='<div class="row">'+
+     '<div class="f"><label>Invoice sent</label><input name="invoiceDate" type="date" value="'+esc(c.invoiceDate)+'" /></div>'+
+     '<div class="f"><label>Paid on</label><input name="paidDate" type="date" value="'+esc(c.paidDate)+'" /></div>'+
+     "</div>";
+  h+="</fieldset>";
+
+  h+='<fieldset><legend>Deliverables</legend><div id="delivList">'+
+     (c.deliverables.length?c.deliverables.map(function(d){return listRowHTML("deliv",d.text);}).join("")
+       :listRowHTML("deliv",""))+
+     '</div><button type="button" class="addrow" data-act="addrow" data-kind="deliv">+ Add deliverable</button>'+
+     '<div class="chips">'+DELIV_PRESETS.map(function(p){
+       return '<button type="button" class="chip" data-act="chip-deliv" data-v="'+esc(p)+'">+ '+esc(p)+"</button>";
+     }).join("")+"</div></fieldset>";
+
+  h+='<fieldset><legend>Rights &amp; brief</legend>';
+  h+='<div class="f"><label>Usage rights</label>'+
+     '<textarea name="usageRights" placeholder="Where and for how long the brand can use the content">'+esc(c.usageRights)+"</textarea>"+
+     '<div class="chips">'+RIGHTS_PRESETS.map(function(p){
+       return '<button type="button" class="chip" data-act="chip-rights" data-v="'+esc(p)+'">+ '+esc(p)+"</button>";
+     }).join("")+"</div></div>";
+  h+='<div class="f"><label>Exclusivity</label>'+
+     '<input name="exclusivity" type="text" placeholder="e.g. No competing ice cream brands for 3 months" value="'+esc(c.exclusivity)+'" /></div>';
+  h+='<div class="f"><label>Brief</label>'+
+     '<textarea name="brief" placeholder="What the brand wants: hooks, talking points, tone, do&#39;s and don&#39;ts…" style="min-height:120px">'+esc(c.brief)+"</textarea></div>";
+  h+="</fieldset>";
+
+  h+='<fieldset><legend>Links</legend><div id="linkList">'+
+     (c.links.length?c.links.map(function(l){return listRowHTML("link",l.label,l.url);}).join("")
+       :listRowHTML("link","",""))+
+     '</div><button type="button" class="addrow" data-act="addrow" data-kind="link">+ Add link</button>'+
+     '<p class="hint">Contract, Drive folder, the posted video — anything you want one tap away.</p></fieldset>';
+
+  h+='<fieldset><legend>Contact &amp; notes</legend>';
+  h+='<div class="row">'+
+     '<div class="f"><label>Contact name</label><input name="contactName" type="text" value="'+esc(c.contactName)+'" /></div>'+
+     '<div class="f"><label>Email</label><input name="contactEmail" type="text" inputmode="email" value="'+esc(c.contactEmail)+'" /></div>'+
+     "</div>";
+  h+='<div class="row">'+
+     '<div class="f"><label>Started</label><input name="startDate" type="date" value="'+esc(c.startDate)+'" /></div>'+
+     '<div class="f"><label>Completed</label><input name="completedDate" type="date" value="'+esc(c.completedDate)+'" /></div>'+
+     "</div>";
+  h+='<div class="f"><label>Notes</label><textarea name="notes" placeholder="Anything else worth remembering">'+esc(c.notes)+"</textarea></div>";
+  h+="</fieldset>";
+
+  h+="</div>";
+  h+='<div class="sheet-foot">'+
+     (isNew?"":'<button type="button" class="btn btn-ghost btn-danger" data-act="delete" data-id="'+c.id+'" style="flex:0 0 auto">Delete</button>')+
+     '<button type="button" class="btn btn-ghost" data-act="close">Cancel</button>'+
+     '<button type="submit" class="btn btn-dark">'+(isNew?"Add collab":"Save")+"</button></div>";
+  h+="</form></div>";
+  return h;
+}
+
+function openForm(id){
+  var isNew=!id;
+  var c=isNew?blank():byId(id);
+  if(!c) return;
+  openModal(formHTML(c,isNew));
+  var form=document.getElementById("collabForm");
+  var brandInput=form.querySelector('[name="brand"]');
+  if(isNew&&brandInput) setTimeout(function(){brandInput.focus();},80);
+
+  form.addEventListener("submit",function(e){
+    e.preventDefault();
+    var fd=new FormData(form);
+    var out=isNew?blank():byId(id);
+    out.id=c.id;
+    ["brand","status","dealType","price","currency","giftedValue","payStatus","invoiceNo",
+     "invoiceDate","paidDate","usageRights","exclusivity","brief","notes","deadline",
+     "startDate","completedDate","contactName","contactEmail"].forEach(function(k){
+      out[k]=String(fd.get(k)==null?"":fd.get(k)).trim();
+    });
+    if(!out.brand){ toast("Give it a brand name first"); brandInput.focus(); return; }
+
+    var prev=isNew?null:byId(id);
+    out.deliverables=[].slice.call(form.querySelectorAll("#delivList .listrow")).map(function(row,i){
+      var txt=row.querySelector(".d-text").value.trim();
+      var was=prev&&prev.deliverables[i];
+      return txt?{text:txt,done:was&&was.text===txt?was.done:false}:null;
+    }).filter(Boolean);
+    out.links=[].slice.call(form.querySelectorAll("#linkList .listrow")).map(function(row){
+      var url=row.querySelector(".l-url").value.trim();
+      var lab=row.querySelector(".l-label").value.trim();
+      return url?{label:lab||"Link",url:url}:null;
+    }).filter(Boolean);
+
+    if(out.status==="done"&&!out.completedDate) out.completedDate=todayISO();
+    if(out.status!=="done") out.completedDate="";
+    if(out.payStatus==="paid"&&!out.paidDate) out.paidDate=todayISO();
+
+    put(out);
+    closeModal();
+    render();
+    toast(isNew?"Added "+out.brand:"Saved");
+  });
+}
+
+/* ========== DETAIL ========== */
+function detailHTML(c){
+  var h='<div class="sheet"><div class="sheet-head"><h2>'+esc(c.brand||"Untitled")+"</h2>"+
+    '<button type="button" class="iconbtn" data-act="close">×</button></div><div class="sheet-body">';
+
+  var bl=[badge(STATUS[c.status].label,STATUS[c.status].cls)];
+  if(c.dealType!=="paid") bl.push(badge(c.dealType==="gifted"?"Gifted":"Paid + gifted","b-gift"));
+  if(c.dealType!=="gifted"&&PAY[c.payStatus].label) bl.push(badge(PAY[c.payStatus].label,PAY[c.payStatus].cls));
+  if(isOpen(c)&&c.deadline&&daysUntil(c.deadline)<0) bl.push(badge(deadlineLabel(c.deadline),"b-late"));
+  h+='<div class="badgerow" style="margin-bottom:16px">'+bl.join("")+"</div>";
+
+  var rows=[];
+  if(earned(c)>0) rows.push(["Fee",money(earned(c),c.currency)]);
+  if(giftValue(c)>0) rows.push(["Gifted value",money(giftValue(c),c.currency)]);
+  if(c.invoiceNo) rows.push(["Invoice #",c.invoiceNo]);
+  if(c.invoiceDate) rows.push(["Invoice sent",fmtDate(c.invoiceDate)]);
+  if(c.paidDate) rows.push(["Paid on",fmtDate(c.paidDate)]);
+  if(c.startDate) rows.push(["Started",fmtDate(c.startDate)]);
+  if(c.deadline) rows.push(["Deadline",fmtDate(c.deadline)+(isOpen(c)?" · "+deadlineLabel(c.deadline):"")]);
+  if(c.completedDate) rows.push(["Completed",fmtDate(c.completedDate)]);
+  if(c.contactName) rows.push(["Contact",c.contactName]);
+  if(c.contactEmail) rows.push(["Email",c.contactEmail]);
+  if(c.exclusivity) rows.push(["Exclusivity",c.exclusivity]);
+  if(rows.length){
+    h+="<dl class=\"dl\">"+rows.map(function(r){
+      return "<dt>"+esc(r[0])+"</dt><dd>"+esc(r[1])+"</dd>";
+    }).join("")+"</dl>";
+  }
+
+  if(c.deliverables.length){
+    h+='<fieldset><legend>Deliverables ('+c.deliverables.filter(function(d){return d.done;}).length+
+       "/"+c.deliverables.length+')</legend><div class="deliv">';
+    c.deliverables.forEach(function(d,i){
+      h+='<button class="deliv-item'+(d.done?" done":"")+'" data-act="toggle" data-id="'+c.id+'" data-i="'+i+'">'+
+         '<span class="deliv-box">'+(d.done?"✓":"")+'</span><span class="deliv-txt">'+esc(d.text)+"</span></button>";
+    });
+    h+="</div></fieldset>";
+  }
+  if(c.usageRights) h+='<fieldset><legend>Usage rights</legend><div class="snip">'+esc(c.usageRights)+"</div></fieldset>";
+  if(c.brief) h+='<fieldset><legend>Brief</legend><div class="snip">'+esc(c.brief)+"</div></fieldset>";
+  if(c.notes) h+='<fieldset><legend>Notes</legend><div class="snip">'+esc(c.notes)+"</div></fieldset>";
+  if(c.links.length){
+    h+='<fieldset><legend>Links</legend><div class="linkchips">'+c.links.map(function(l){
+      var u=safeUrl(l.url);
+      return u?'<a class="linkchip" href="'+esc(u)+'" target="_blank" rel="noopener">'+esc(l.label||"Link")+" ↗</a>":"";
+    }).join("")+"</div></fieldset>";
+  }
+
+  h+="</div>";
+  h+='<div class="sheet-foot">'+
+     '<button type="button" class="btn btn-ghost" data-act="close">Close</button>'+
+     '<button type="button" class="btn btn-ghost" data-act="edit" data-id="'+c.id+'">Edit</button>'+
+     (isOpen(c)
+       ?'<button type="button" class="btn btn-dark" data-act="finish" data-id="'+c.id+'">✓ Mark done</button>'
+       :'<button type="button" class="btn btn-ghost" data-act="reopen" data-id="'+c.id+'">↩ Reopen</button>')+
+     "</div></div>";
+  return h;
+}
+
+function brandDetailHTML(name){
+  var items=all().filter(function(c){
+    return (c.brand||"Untitled").trim().toLowerCase()===name.toLowerCase();
+  }).sort(function(a,b){
+    var ad=countDate(a)||"0", bd=countDate(b)||"0";
+    return ad<bd?1:(ad>bd?-1:0);
+  });
+  var sum=sumMap(), gift=sumMap();
+  items.forEach(function(c){ addTo(sum,c.currency,earned(c)); addTo(gift,c.currency,giftValue(c)); });
+
+  var h='<div class="sheet"><div class="sheet-head"><h2>'+esc(name)+"</h2>"+
+    '<button type="button" class="iconbtn" data-act="close">×</button></div><div class="sheet-body">';
+  h+='<div class="stats" style="margin-bottom:18px">'+
+     statCard(items.length,"Collabs","green")+
+     statCard(fmtSum(sum),"Total earned")+
+     (Object.keys(gift).length?statCard(fmtSum(gift),"Gifted value","pink"):"")+
+     "</div>";
+  h+=items.map(function(c){
+    var d=countDate(c);
+    return '<button class="hist" data-act="open" data-id="'+c.id+'">'+
+      '<div class="h1"><b>'+esc(d?fmtDate(d):"No date")+"</b>"+
+      badge(STATUS[c.status].label,STATUS[c.status].cls)+"</div>"+
+      '<div class="meta"><span>'+esc(earned(c)>0?money(earned(c),c.currency):"—")+"</span>"+
+      (c.deliverables.length?"<span>"+c.deliverables.length+" deliverables</span>":"")+
+      (c.usageRights?"<span>"+esc(c.usageRights.slice(0,44))+(c.usageRights.length>44?"…":"")+"</span>":"")+
+      "</div></button>";
+  }).join("");
+  h+='</div><div class="sheet-foot"><button type="button" class="btn btn-ghost" data-act="close">Close</button></div></div>';
+  return h;
+}
+
+/* ========== EXPORT / IMPORT ========== */
+function doExport(){
+  var stamp=todayISO();
+  var blob=new Blob([JSON.stringify(db,null,2)],{type:"application/json"});
+  var a=document.createElement("a");
+  a.href=URL.createObjectURL(blob);
+  a.download="collab-crm-backup-"+stamp+".json";
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  setTimeout(function(){URL.revokeObjectURL(a.href);},1000);
+  toast("Backup downloaded — keep it somewhere safe");
+}
+function doImport(file){
+  var r=new FileReader();
+  r.onload=function(){
+    try{
+      var p=JSON.parse(r.result);
+      if(!p||!Array.isArray(p.collabs)) throw new Error("not a CRM backup");
+      var existing={};
+      db.collabs.forEach(function(c){ existing[c.id]=true; });
+      var added=0;
+      p.collabs.forEach(function(c){
+        var n=normalize(c);
+        if(existing[n.id]) return;      // already have it — keep what's on this device
+        db.collabs.push(n); added++;
+      });
+      save(); render();
+      toast(added?("Imported "+added+" collab"+(added===1?"":"s")):"Nothing new — already up to date");
+    }catch(e){
+      toast("That file doesn't look like a CRM backup");
+      console.warn(e);
+    }
+  };
+  r.readAsText(file);
+}
+
+/* ========== EVENTS ========== */
+document.addEventListener("click",function(e){
+  var t=e.target.closest("[data-act],[data-tab],[data-overlay]");
+  if(!t) return;
+
+  if(t.hasAttribute("data-tab")){
+    state.tab=t.getAttribute("data-tab");
+    state.q="";
+    render();
+    window.scrollTo(0,0);
+    return;
+  }
+  if(t.hasAttribute("data-overlay")&&e.target===t){ closeModal(); return; }
+
+  var act=t.getAttribute("data-act");
+  var id=t.getAttribute("data-id");
+
+  if(act==="new"){ openForm(null); }
+  else if(act==="open"){ var c=byId(id); if(c) openModal(detailHTML(c)); }
+  else if(act==="edit"){ openForm(id); }
+  else if(act==="close"){ closeModal(); }
+  else if(act==="brand"){ openModal(brandDetailHTML(t.getAttribute("data-brand"))); }
+  else if(act==="year"){ state.year=Number(t.getAttribute("data-y")); render(); }
+  else if(act==="toggle"){
+    var col=byId(id), i=Number(t.getAttribute("data-i"));
+    if(col&&col.deliverables[i]){
+      col.deliverables[i].done=!col.deliverables[i].done;
+      put(col);
+      var sheet=document.querySelector(".sheet");
+      var sheetTop=sheet?sheet.scrollTop:0;
+      render();
+      if(sheet){
+        openModal(detailHTML(byId(id)));
+        document.querySelector(".sheet").scrollTop=sheetTop;
+      }
+    }
+  }
+  else if(act==="finish"){
+    var f=byId(id);
+    if(f){
+      f.status="done";
+      if(!f.completedDate) f.completedDate=todayISO();
+      put(f); closeModal(); render();
+      toast(f.brand+" archived ✓");
+    }
+  }
+  else if(act==="reopen"){
+    var r=byId(id);
+    if(r){ r.status="active"; r.completedDate=""; put(r); closeModal(); render(); toast(r.brand+" is back on your dashboard"); }
+  }
+  else if(act==="delete"){
+    var d=byId(id);
+    if(d&&confirm("Delete “"+d.brand+"” for good?\n\nThis removes it from your stats too. Marking it done instead keeps the record.")){
+      remove(id); closeModal(); render(); toast("Deleted");
+    }
+  }
+  else if(act==="addrow"){
+    var kind=t.getAttribute("data-kind");
+    var host=document.getElementById(kind==="deliv"?"delivList":"linkList");
+    host.insertAdjacentHTML("beforeend",listRowHTML(kind,"",""));
+    var rows=host.querySelectorAll(".listrow input");
+    if(rows.length) rows[rows.length-(kind==="deliv"?1:2)].focus();
+  }
+  else if(act==="rmrow"){
+    var row=t.closest(".listrow"), list=row.parentElement;
+    row.remove();
+    if(!list.querySelector(".listrow"))
+      list.insertAdjacentHTML("beforeend",listRowHTML(list.id==="delivList"?"deliv":"link","",""));
+  }
+  else if(act==="chip-deliv"){
+    var dl=document.getElementById("delivList");
+    var firstEmpty=null;
+    [].slice.call(dl.querySelectorAll(".d-text")).some(function(inp){
+      if(!inp.value.trim()){ firstEmpty=inp; return true; }
+      return false;
+    });
+    if(firstEmpty) firstEmpty.value=t.getAttribute("data-v");
+    else{
+      dl.insertAdjacentHTML("beforeend",listRowHTML("deliv",t.getAttribute("data-v"),""));
+    }
+  }
+  else if(act==="chip-rights"){
+    var ta=document.querySelector('[name="usageRights"]');
+    var v=t.getAttribute("data-v");
+    ta.value=ta.value.trim()?(ta.value.trim()+"\n"+v):v;
+    ta.focus();
+  }
+});
+
+document.addEventListener("input",function(e){
+  if(e.target.id==="q"){
+    state.q=e.target.value;
+    var pos=e.target.selectionStart;
+    render();
+    var again=document.getElementById("q");
+    if(again){ again.focus(); try{again.setSelectionRange(pos,pos);}catch(_){} }
+  }
+});
+
+document.addEventListener("keydown",function(e){
+  if(e.key==="Escape"&&document.querySelector(".overlay")) closeModal();
+});
+
+document.getElementById("btnNewTop").addEventListener("click",function(){openForm(null);});
+document.getElementById("btnNewFab").addEventListener("click",function(){openForm(null);});
+document.getElementById("btnExport").addEventListener("click",doExport);
+document.getElementById("btnImport").addEventListener("click",function(){document.getElementById("fileIn").click();});
+document.getElementById("fileIn").addEventListener("change",function(e){
+  if(e.target.files&&e.target.files[0]) doImport(e.target.files[0]);
+  e.target.value="";
+});
+
+/* ========== GO ========== */
+load();
+render();
+})();
+</script>
+</body>
+</html>

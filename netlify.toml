@@ -1,7 +1,20 @@
 [build]
   publish = "."
 
+# Clean URL for the private collab CRM. Must come before the catch-all,
+# since Netlify uses the first matching rule.
+[[redirects]]
+  from = "/crm"
+  to = "/crm.html"
+  status = 200
+
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
+
+# Keep the CRM out of search results.
+[[headers]]
+  for = "/crm.html"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
