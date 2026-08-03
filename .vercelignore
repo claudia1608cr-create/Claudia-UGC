@@ -1,0 +1,4 @@
+# The collab CRM is a separate application with its own deployment.
+# This project deploys from the repo root, so without this line Vercel would
+# upload crm-app/ too and serve it at /crm-app/ on the portfolio domain.
+crm-app

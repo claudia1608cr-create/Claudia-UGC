@@ -7,10 +7,32 @@ Self-contained static site: no backend, no accounts, no monthly cost.
 
 ---
 
-## Moving this into its own repo
+## Deploying
 
-These files are a complete repo root — `index.html` is the whole app. To split
-it out from the portfolio repo:
+Hosting is not optional. The password derives a real encryption key through the
+Web Crypto API, which browsers only expose over `https://` or `localhost` — open
+`index.html` straight off disk and you get a "needs a secure connection" notice
+instead of the lock screen.
+
+### Quickest — Vercel CLI
+
+From inside this folder:
+
+```bash
+npx vercel          # first run: sign in, accept the defaults, gives a preview URL
+npx vercel --prod   # promote it to the real address
+```
+
+Answer **no** to "link to an existing project", framework preset **Other**, and
+leave the build command and output directory empty — there is nothing to build.
+
+Running it from *inside* `crm-app/` matters: that makes this folder the
+deployment root, so the portfolio's `.vercelignore` doesn't apply and only these
+files are uploaded.
+
+### Its own repo (recommended)
+
+These files are a complete repo root. To split them out of the portfolio repo:
 
 ```bash
 # 1. Create an empty repo on github.com (no README, no .gitignore) — e.g. claudia-collab-crm
@@ -24,9 +46,11 @@ git remote add origin git@github.com:YOUR-USERNAME/claudia-collab-crm.git
 git push -u origin main
 ```
 
-Then in Netlify: **Add new site → Import an existing project**, pick the repo,
-leave the build command empty and the publish directory as `.`. The included
-`netlify.toml` handles routing, security headers and `noindex`.
+Then **vercel.com/new → Import** the repo, framework preset **Other**, no build
+command. `vercel.json` sets the security headers and `noindex`.
+
+If you deploy from the portfolio repo instead of a separate one, set the
+project's **Root Directory** to `crm-app` in Vercel's settings.
 
 ## How it works
 
@@ -65,7 +89,8 @@ browser's storage directly, sees ciphertext.
 
 It does not hide the **page**. The app itself is a public URL — anyone who
 guesses it gets the lock screen, not your collabs. If you also want the URL
-itself gated, that needs Netlify's site-level password (a paid plan).
+itself gated, that needs Vercel's Deployment Protection — password protection on
+a project is a Pro-plan feature.
 
 Encryption needs a secure context, so the app must be served over `https://`
 (or `localhost`). Opening `index.html` straight off disk will show a warning
