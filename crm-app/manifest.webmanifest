@@ -1,0 +1,16 @@
+{
+  "name": "Collab CRM",
+  "short_name": "Collabs",
+  "description": "Private tracker for brand collaborations — deliverables, usage rights, pricing, briefs and payments.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#FDFAF7",
+  "theme_color": "#FDFAF7",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

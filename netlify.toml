@@ -1,20 +1,17 @@
 [build]
   publish = "."
 
-# Clean URL for the private collab CRM. Must come before the catch-all,
-# since Netlify uses the first matching rule.
+# The collab CRM is a separate app with its own deploy (see crm-app/README.md).
+# This publish directory is the whole repo, so shadow the folder with a forced
+# 404 — otherwise the portfolio domain would serve the CRM too. `force` is what
+# makes the rule win over the files that are actually there.
 [[redirects]]
-  from = "/crm"
-  to = "/crm.html"
-  status = 200
+  from = "/crm-app/*"
+  to = "/index.html"
+  status = 404
+  force = true
 
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
-
-# Keep the CRM out of search results.
-[[headers]]
-  for = "/crm.html"
-  [headers.values]
-    X-Robots-Tag = "noindex, nofollow"

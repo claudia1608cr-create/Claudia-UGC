@@ -4,10 +4,14 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <meta name="robots" content="noindex, nofollow" />
-<title>Collab CRM — Claudia</title>
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23C8E6D8'/><text y='72' x='50' text-anchor='middle' font-size='48' font-family='Georgia,serif' font-weight='700' fill='%235d8a74'>CR</text></svg>" />
-<link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23C8E6D8'/><text y='72' x='50' text-anchor='middle' font-size='48' font-family='Georgia,serif' font-weight='700' fill='%235d8a74'>CR</text></svg>" />
+<meta name="referrer" content="no-referrer" />
+<title>Collab CRM</title>
+<link rel="manifest" href="manifest.webmanifest" />
+<link rel="icon" href="icons/icon-192.png" sizes="192x192" />
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<meta name="apple-mobile-web-app-title" content="Collab CRM" />
 <meta name="theme-color" content="#FDFAF7" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -20,6 +24,7 @@
   --beige:#FDFAF7; --beige-dark:#F5EFE8;
   --dark:#2A2A2A; --muted:#7A6E6A; --white:#fff;
   --amber:#F3E0C0; --amber-deep:#a8802f;
+  --red:#a33; --red-light:#FBE4E4; --red-border:#e9bcbc;
   --radius:18px; --radius-sm:11px;
   --shadow:0 2px 14px rgba(42,42,42,.06);
 }
@@ -30,11 +35,38 @@ h1,h2,h3{font-family:'Playfair Display',serif;line-height:1.2;font-weight:700}
 a{color:inherit;text-decoration:none}
 button,input,select,textarea{font-family:inherit;font-size:inherit;color:inherit}
 button{cursor:pointer;border:none;background:none}
+[hidden]{display:none !important}
 .wrap{max-width:1080px;margin:0 auto;padding:0 18px}
+
+/* ===== GATE (setup / lock) ===== */
+.gate{min-height:100dvh;display:flex;align-items:center;justify-content:center;padding:24px;
+  background:linear-gradient(150deg,var(--pink-light) 0%,var(--beige) 55%,var(--green-light) 100%)}
+.gate-card{background:var(--white);border:1px solid var(--beige-dark);border-radius:22px;
+  box-shadow:0 8px 40px rgba(42,42,42,.09);padding:34px 28px;width:100%;max-width:400px;text-align:center}
+.gate-lock{font-size:2rem;margin-bottom:10px}
+.gate-card h1{font-size:1.75rem;margin-bottom:6px}
+.gate-card .sub{font-size:.88rem;color:var(--muted);margin-bottom:22px;line-height:1.5}
+.gate-card form{text-align:left}
+.gate-card input[type="password"]{width:100%;padding:13px 15px;border-radius:var(--radius-sm);
+  border:1.5px solid var(--beige-dark);background:var(--beige);outline:none;transition:.15s;margin-bottom:10px}
+.gate-card input[type="password"]:focus{border-color:var(--green);background:var(--white)}
+.gate-btn{width:100%;padding:13px;border-radius:100px;background:var(--dark);color:var(--white);
+  font-weight:600;transition:.15s;margin-top:4px}
+.gate-btn:hover{background:#000}
+.gate-btn[disabled]{opacity:.55;cursor:default}
+.gate-err{background:var(--red-light);border:1px solid var(--red-border);color:var(--red);font-size:.82rem;
+  padding:9px 12px;border-radius:var(--radius-sm);margin-bottom:12px;text-align:left}
+.gate-note{font-size:.75rem;color:var(--muted);line-height:1.5;margin-top:18px;
+  border-top:1px solid var(--beige-dark);padding-top:14px;text-align:left}
+.gate-note b{color:var(--dark)}
+.gate-link{font-size:.78rem;color:var(--muted);text-decoration:underline;margin-top:14px;display:inline-block}
+.gate-link:hover{color:var(--red)}
+.gate-legacy{background:var(--green-light);border:1px solid var(--green);border-radius:var(--radius-sm);
+  padding:11px 13px;font-size:.8rem;text-align:left;margin-bottom:14px;line-height:1.5}
 
 /* ===== HEADER ===== */
 .top{background:var(--white);border-bottom:1px solid var(--beige-dark);position:sticky;top:0;z-index:40}
-.top-in{max-width:1080px;margin:0 auto;padding:14px 18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.top-in{max-width:1080px;margin:0 auto;padding:14px 18px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .brandmark{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:700;line-height:1.1}
 .brandmark small{display:block;font-family:'Inter',sans-serif;font-size:.62rem;letter-spacing:.14em;
   text-transform:uppercase;color:var(--muted);font-weight:500}
@@ -75,7 +107,7 @@ button{cursor:pointer;border:none;background:none}
 .btn-ghost{background:var(--white);border:1.5px solid var(--beige-dark)}
 .btn-ghost:hover{border-color:var(--muted)}
 .btn-sm{padding:7px 14px;font-size:.78rem}
-.btn-danger{color:#a33;border-color:#f0d5d5}
+.btn-danger{color:var(--red);border-color:var(--red-border)}
 .btn-danger:hover{background:#fdf0f0;border-color:#d99}
 
 /* ===== STAT STRIP ===== */
@@ -94,7 +126,7 @@ button{cursor:pointer;border:none;background:none}
 .card{background:var(--white);border:1px solid var(--beige-dark);border-radius:var(--radius);padding:18px;
   box-shadow:var(--shadow);display:flex;flex-direction:column;gap:12px;transition:.18s}
 .card:hover{box-shadow:0 6px 22px rgba(42,42,42,.09);transform:translateY(-1px)}
-.card.is-late{border-color:#e9bcbc}
+.card.is-late{border-color:var(--red-border)}
 .card-top{display:flex;align-items:flex-start;gap:10px}
 .card-brand{font-family:'Playfair Display',serif;font-size:1.22rem;font-weight:700;line-height:1.25;
   overflow-wrap:anywhere;flex:1;text-align:left}
@@ -109,7 +141,7 @@ button{cursor:pointer;border:none;background:none}
 .b-invoiced{background:var(--amber);color:var(--amber-deep)}
 .b-paid{background:var(--green-light);color:var(--green-deep)}
 .b-gift{background:var(--pink-light);color:var(--pink-deep)}
-.b-late{background:#FBE4E4;color:#a33}
+.b-late{background:var(--red-light);color:var(--red)}
 .badgerow{display:flex;flex-wrap:wrap;gap:6px}
 .card-money{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700}
 .card-money small{font-family:'Inter',sans-serif;font-size:.72rem;color:var(--muted);font-weight:500}
@@ -203,11 +235,23 @@ legend{font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:var(-
 .listrow input{flex:1;min-width:0}
 .xbtn{flex:0 0 42px;border-radius:var(--radius-sm);background:var(--white);border:1.5px solid var(--beige-dark);
   color:var(--muted);display:grid;place-items:center;font-size:1.1rem;line-height:1}
-.xbtn:hover{background:#fdf0f0;border-color:#e9bcbc;color:#a33}
+.xbtn:hover{background:#fdf0f0;border-color:var(--red-border);color:var(--red)}
 .addrow{font-size:.8rem;font-weight:600;color:var(--green-deep);padding:7px 0}
 .addrow:hover{color:var(--dark)}
 .hint{font-size:.72rem;color:var(--muted);margin-top:4px;line-height:1.45}
 .req{color:var(--pink-deep)}
+.warnbox{background:var(--red-light);border:1px solid var(--red-border);color:var(--red);font-size:.8rem;
+  padding:10px 13px;border-radius:var(--radius-sm);margin-bottom:12px;line-height:1.5}
+
+/* ===== MENU LIST ===== */
+.mlist{display:flex;flex-direction:column;gap:8px}
+.mitem{background:var(--white);border:1px solid var(--beige-dark);border-radius:var(--radius-sm);
+  padding:14px 16px;text-align:left;width:100%;transition:.15s;display:flex;gap:13px;align-items:flex-start}
+.mitem:hover{border-color:var(--green);background:var(--green-light)}
+.mitem .mi{font-size:1.1rem;line-height:1.4}
+.mitem b{display:block;font-weight:600;font-size:.92rem}
+.mitem span{font-size:.76rem;color:var(--muted);line-height:1.45}
+.mitem.danger:hover{border-color:var(--red-border);background:#fdf0f0}
 
 /* ===== DETAIL VIEW ===== */
 .dl{display:grid;grid-template-columns:120px 1fr;gap:9px 14px;font-size:.9rem;margin-bottom:16px}
@@ -221,7 +265,7 @@ legend{font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:var(-
 .hist .h1{display:flex;gap:10px;align-items:center;margin-bottom:3px}
 .hist .h1 b{flex:1;overflow-wrap:anywhere}
 
-/* ===== TOAST ===== */
+/* ===== TOAST / FAB ===== */
 .toast{position:fixed;left:50%;transform:translateX(-50%);bottom:26px;background:var(--dark);color:var(--white);
   padding:12px 22px;border-radius:100px;font-size:.85rem;font-weight:500;z-index:300;box-shadow:0 6px 22px rgba(0,0,0,.2);
   opacity:0;pointer-events:none;transition:.25s;max-width:88vw;text-align:center}
@@ -238,20 +282,23 @@ legend{font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:var(-
 </head>
 <body>
 
-<header class="top">
-  <div class="top-in">
-    <div class="brandmark">Collab CRM<small>Claudia Ramstedt</small></div>
-    <div class="top-spacer"></div>
-    <button class="iconbtn" id="btnExport" title="Download a backup of all your collabs">⬇</button>
-    <button class="iconbtn" id="btnImport" title="Restore from a backup file">⬆</button>
-    <button class="btn btn-dark btn-sm hide-sm" id="btnNewTop">+ New collab</button>
-  </div>
-  <nav class="tabs" id="tabs"></nav>
-</header>
+<div id="gate" class="gate"></div>
 
-<main class="wrap mainpad" id="main"></main>
+<div id="app" hidden>
+  <header class="top">
+    <div class="top-in">
+      <div class="brandmark">Collab CRM<small>Private</small></div>
+      <div class="top-spacer"></div>
+      <button class="iconbtn" id="btnLock" title="Lock now">🔒</button>
+      <button class="iconbtn" id="btnMenu" title="Backup &amp; settings">⋯</button>
+      <button class="btn btn-dark btn-sm hide-sm" id="btnNewTop">+ New collab</button>
+    </div>
+    <nav class="tabs" id="tabs"></nav>
+  </header>
+  <main class="wrap mainpad" id="main"></main>
+  <button class="fab" id="btnNewFab" aria-label="New collab">+</button>
+</div>
 
-<button class="fab" id="btnNewFab" aria-label="New collab">+</button>
 <div id="modalHost"></div>
 <div class="toast" id="toast"></div>
 <input type="file" id="fileIn" accept="application/json,.json" style="display:none" />
@@ -260,27 +307,260 @@ legend{font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:var(-
 (function(){
 "use strict";
 
-/* ========== STORAGE ========== */
-var KEY="claudia_collab_crm_v1";
+/* ==========================================================================
+   CRYPTO
+   The vault is encrypted with AES-GCM using a key derived from the password
+   via PBKDF2-SHA256. The key lives only in memory — closing the tab or
+   locking discards it, so re-entry always costs a full derivation.
+   ========================================================================== */
+var SUB=(window.crypto&&window.crypto.subtle)?window.crypto.subtle:null;
+var VAULT_KEY="collab_crm_vault_v1";
+var LEGACY_KEY="claudia_collab_crm_v1";   /* plaintext store from the pre-password version */
+/* OWASP's current floor for PBKDF2-HMAC-SHA256. Existing vaults record the
+   count they were built with and are read back with it, so raising this later
+   costs nothing — new and rotated vaults simply get the stronger setting. */
+var PBKDF2_ITER=600000;
+var IDLE_MS=15*60*1000;
+
+var cryptoKey=null;      /* CryptoKey while unlocked, null while locked */
+var vaultMeta=null;      /* {salt, iter} of the stored vault */
 var db={version:1,collabs:[]};
-var storageOK=true;
 
-function load(){
+function te(s){ return new TextEncoder().encode(s); }
+function td(b){ return new TextDecoder().decode(b); }
+function b64(buf){
+  var bytes=new Uint8Array(buf), s="";
+  for(var i=0;i<bytes.length;i++) s+=String.fromCharCode(bytes[i]);
+  return btoa(s);
+}
+function unb64(str){
+  var s=atob(str), out=new Uint8Array(s.length);
+  for(var i=0;i<s.length;i++) out[i]=s.charCodeAt(i);
+  return out;
+}
+function randomBytes(n){ return window.crypto.getRandomValues(new Uint8Array(n)); }
+
+function deriveKey(password,salt,iter){
+  return SUB.importKey("raw",te(password),{name:"PBKDF2"},false,["deriveKey"])
+    .then(function(base){
+      return SUB.deriveKey(
+        {name:"PBKDF2",salt:salt,iterations:iter,hash:"SHA-256"},
+        base,{name:"AES-GCM",length:256},false,["encrypt","decrypt"]);
+    });
+}
+function encryptWith(key,obj){
+  var iv=randomBytes(12);
+  return SUB.encrypt({name:"AES-GCM",iv:iv},key,te(JSON.stringify(obj)))
+    .then(function(ct){ return {iv:b64(iv),ct:b64(ct)}; });
+}
+function decryptWith(key,ivB64,ctB64){
+  return SUB.decrypt({name:"AES-GCM",iv:unb64(ivB64)},key,unb64(ctB64))
+    .then(function(pt){ return JSON.parse(td(pt)); });
+}
+function readVault(){
   try{
-    var raw=localStorage.getItem(KEY);
-    if(raw){
-      var p=JSON.parse(raw);
-      if(p&&Array.isArray(p.collabs)) db=p;
-    }
-  }catch(e){ storageOK=false; console.warn("Could not read saved data:",e); }
+    var raw=localStorage.getItem(VAULT_KEY);
+    if(!raw) return null;
+    var v=JSON.parse(raw);
+    return (v&&v.ct&&v.salt&&v.iv)?v:null;
+  }catch(e){ return null; }
 }
-function save(){
-  try{ localStorage.setItem(KEY,JSON.stringify(db)); }
-  catch(e){ storageOK=false; toast("⚠ Could not save — storage is full or blocked"); console.warn(e); }
+function envelope(salt,iter,enc){
+  return {v:1,app:"collab-crm",kdf:"PBKDF2-SHA256",iter:iter,salt:b64(salt),iv:enc.iv,ct:enc.ct};
 }
-function uid(){ return Date.now().toString(36)+Math.random().toString(36).slice(2,8); }
 
-/* ========== HELPERS ========== */
+/* Writes are serialised: encryption is async, and two overlapping saves could
+   otherwise persist in the wrong order. */
+var saveChain=Promise.resolve();
+function save(){
+  saveChain=saveChain.then(function(){
+    if(!cryptoKey||!vaultMeta) return;
+    return encryptWith(cryptoKey,db).then(function(enc){
+      localStorage.setItem(VAULT_KEY,JSON.stringify(envelope(vaultMeta.salt,vaultMeta.iter,enc)));
+    });
+  }).catch(function(e){
+    console.warn("Save failed:",e);
+    toast("⚠ Could not save — your last change may be lost");
+  });
+  return saveChain;
+}
+
+/* ========== GATE (setup / unlock) ========== */
+var gateBusy=false;
+
+function showGate(html){
+  document.getElementById("app").hidden=true;
+  document.getElementById("gate").hidden=false;
+  document.getElementById("gate").innerHTML=html;
+}
+function gateError(msg){
+  var box=document.querySelector(".gate-err");
+  if(box){ box.textContent=msg; box.hidden=false; }
+}
+
+function renderGate(){
+  /* Reset here, not on success: a successful unlock leaves gateBusy true, and
+     re-locking would then find the submit handler permanently short-circuited. */
+  gateBusy=false;
+  if(!SUB||!window.isSecureContext){
+    showGate('<div class="gate-card"><div class="gate-lock">⚠</div><h1>Needs a secure connection</h1>'+
+      '<p class="sub">Encryption is only available over <b>https://</b> (or on localhost). '+
+      'Open this app on its real address rather than from a file on disk.</p></div>');
+    return;
+  }
+  var vault=readVault();
+  if(vault){
+    vaultMeta={salt:unb64(vault.salt),iter:vault.iter||PBKDF2_ITER};
+    showGate(
+      '<div class="gate-card"><div class="gate-lock">🔒</div><h1>Collab CRM</h1>'+
+      '<p class="sub">Enter your password to unlock.</p>'+
+      '<form id="unlockForm">'+
+        '<div class="gate-err" hidden></div>'+
+        '<input type="password" id="pw" placeholder="Password" autocomplete="current-password" required />'+
+        '<button type="submit" class="gate-btn" id="gateGo">Unlock</button>'+
+      "</form>"+
+      '<button class="gate-link" id="btnForgot">I forgot my password</button></div>');
+    var uf=document.getElementById("unlockForm");
+    uf.addEventListener("submit",function(e){ e.preventDefault(); doUnlock(document.getElementById("pw").value); });
+    document.getElementById("btnForgot").addEventListener("click",showForgot);
+    setTimeout(function(){ var p=document.getElementById("pw"); if(p) p.focus(); },120);
+  }else{
+    var legacy=null;
+    try{ legacy=localStorage.getItem(LEGACY_KEY); }catch(e){}
+    var legacyN=0;
+    if(legacy){ try{ legacyN=(JSON.parse(legacy).collabs||[]).length; }catch(e){ legacyN=0; } }
+    showGate(
+      '<div class="gate-card"><div class="gate-lock">✦</div><h1>Set a password</h1>'+
+      '<p class="sub">This encrypts everything you store here. Pick a passphrase you will remember — '+
+      'a few unrelated words works well.</p>'+
+      '<form id="setupForm">'+
+        '<div class="gate-err" hidden></div>'+
+        (legacyN?'<div class="gate-legacy">Found <b>'+legacyN+' collab'+(legacyN===1?"":"s")+
+          '</b> saved by the earlier unprotected version. They will be brought across and the old copy deleted.</div>':"")+
+        '<input type="password" id="pw1" placeholder="Password (min 8 characters)" autocomplete="new-password" required />'+
+        '<input type="password" id="pw2" placeholder="Repeat password" autocomplete="new-password" required />'+
+        '<button type="submit" class="gate-btn" id="gateGo">Create my CRM</button>'+
+      "</form>"+
+      '<p class="gate-note"><b>There is no password reset.</b> The password is the key — nobody, '+
+      'including this app, can recover your collabs without it. Download a backup once you are set up.</p></div>');
+    document.getElementById("setupForm").addEventListener("submit",function(e){
+      e.preventDefault(); doSetup(); });
+    setTimeout(function(){ var p=document.getElementById("pw1"); if(p) p.focus(); },120);
+  }
+}
+
+function busy(on,label){
+  gateBusy=on;
+  var b=document.getElementById("gateGo");
+  if(b){ b.disabled=on; b.textContent=on?(label||"Working…"):b.getAttribute("data-label")||b.textContent; }
+}
+
+function doSetup(){
+  if(gateBusy) return;
+  var p1=document.getElementById("pw1").value, p2=document.getElementById("pw2").value;
+  if(p1.length<8) return gateError("Use at least 8 characters.");
+  if(p1!==p2) return gateError("The two passwords do not match.");
+  var b=document.getElementById("gateGo");
+  b.setAttribute("data-label","Create my CRM"); busy(true,"Encrypting…");
+
+  var salt=randomBytes(16);
+  deriveKey(p1,salt,PBKDF2_ITER).then(function(key){
+    cryptoKey=key;
+    vaultMeta={salt:salt,iter:PBKDF2_ITER};
+    db={version:1,collabs:[]};
+    /* Carry over anything the earlier unprotected version left behind. */
+    try{
+      var legacy=localStorage.getItem(LEGACY_KEY);
+      if(legacy){
+        var p=JSON.parse(legacy);
+        if(p&&Array.isArray(p.collabs)) db.collabs=p.collabs.map(normalize);
+      }
+    }catch(e){}
+    return save().then(function(){
+      try{ localStorage.removeItem(LEGACY_KEY); }catch(e){}
+      enterApp();
+      toast(db.collabs.length?("Brought across "+db.collabs.length+" collabs"):"You're all set — add your first collab");
+    });
+  }).catch(function(e){
+    console.warn(e); busy(false); gateError("Something went wrong setting up. Please try again.");
+  });
+}
+
+function doUnlock(password){
+  if(gateBusy) return;
+  if(!password) return gateError("Enter your password.");
+  var vault=readVault();
+  if(!vault) return renderGate();
+  var b=document.getElementById("gateGo");
+  b.setAttribute("data-label","Unlock"); busy(true,"Unlocking…");
+
+  deriveKey(password,unb64(vault.salt),vault.iter||PBKDF2_ITER).then(function(key){
+    return decryptWith(key,vault.iv,vault.ct).then(function(data){
+      cryptoKey=key;
+      vaultMeta={salt:unb64(vault.salt),iter:vault.iter||PBKDF2_ITER};
+      db=(data&&Array.isArray(data.collabs))?data:{version:1,collabs:[]};
+      enterApp();
+    });
+  }).catch(function(){
+    /* AES-GCM authentication failure is what a wrong password looks like. */
+    busy(false);
+    gateError("That password doesn't match. Try again.");
+    var p=document.getElementById("pw"); if(p){ p.value=""; p.focus(); }
+  });
+}
+
+function showForgot(){
+  showGate(
+    '<div class="gate-card"><div class="gate-lock">🔑</div><h1>No way back in</h1>'+
+    '<p class="sub">Your collabs are encrypted with your password. There is no reset link and no master key — '+
+    'that is exactly what stops anyone else reading them.</p>'+
+    '<div class="warnbox" style="text-align:left">If you have an <b>unencrypted backup file</b>, start fresh with '+
+    'a new password and import it. Otherwise the data cannot be recovered.</div>'+
+    '<button class="gate-btn" id="btnBack">Back to unlock</button>'+
+    '<button class="gate-link" id="btnWipe">Erase everything and start over</button></div>');
+  document.getElementById("btnBack").addEventListener("click",renderGate);
+  document.getElementById("btnWipe").addEventListener("click",function(){
+    if(!confirm("Erase all encrypted data on this device and start with a new password?\n\nThis cannot be undone.")) return;
+    if(!confirm("Really erase? Everything stored here will be gone for good.")) return;
+    try{ localStorage.removeItem(VAULT_KEY); }catch(e){}
+    cryptoKey=null; vaultMeta=null; db={version:1,collabs:[]};
+    renderGate();
+  });
+}
+
+function enterApp(){
+  document.getElementById("gate").hidden=true;
+  document.getElementById("gate").innerHTML="";
+  document.getElementById("app").hidden=false;
+  state.tab="active"; state.q="";
+  render();
+  resetIdle();
+}
+
+function lock(silent){
+  cryptoKey=null;
+  db={version:1,collabs:[]};
+  closeModal();
+  clearTimeout(idleTimer);
+  renderGate();
+  if(!silent) toast("Locked");
+}
+
+/* ========== AUTO-LOCK ========== */
+var idleTimer=null;
+function resetIdle(){
+  clearTimeout(idleTimer);
+  if(!cryptoKey) return;
+  idleTimer=setTimeout(function(){ lock(true); },IDLE_MS);
+}
+["pointerdown","keydown","touchstart","focus"].forEach(function(ev){
+  window.addEventListener(ev,function(){ if(cryptoKey) resetIdle(); },true);
+});
+
+/* ==========================================================================
+   HELPERS
+   ========================================================================== */
+function uid(){ return Date.now().toString(36)+Math.random().toString(36).slice(2,8); }
 function esc(s){
   return String(s==null?"":s).replace(/[&<>"']/g,function(c){
     return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];
@@ -314,7 +594,7 @@ function daysUntil(iso){
 function deadlineLabel(iso){
   var n=daysUntil(iso);
   if(n===null) return "";
-  if(n<0) return Math.abs(n)+ (Math.abs(n)===1?" day late":" days late");
+  if(n<0) return Math.abs(n)+(Math.abs(n)===1?" day late":" days late");
   if(n===0) return "Due today";
   if(n===1) return "Due tomorrow";
   return "Due in "+n+" days";
@@ -364,7 +644,7 @@ function blank(){
     createdAt:new Date().toISOString()
   };
 }
-/* Fill in any field a older/imported record is missing. */
+/* Fill in any field an older or imported record is missing. */
 function normalize(c){
   var b=blank();
   for(var k in b){ if(!(k in c)) c[k]=b[k]; }
@@ -408,9 +688,8 @@ function giftValue(c){
 }
 
 /* ========== STATE ========== */
-var state={tab:"active",q:"",year:new Date().getFullYear(),brand:null};
+var state={tab:"active",q:"",year:new Date().getFullYear()};
 
-/* ========== SEARCH / FILTER ========== */
 function matches(c,q){
   if(!q) return true;
   var hay=[c.brand,c.brief,c.usageRights,c.notes,c.contactName,c.contactEmail,c.exclusivity,c.invoiceNo]
@@ -433,23 +712,16 @@ function doneCollabs(){
     });
 }
 
-/* ========== RENDER: TABS ========== */
+/* ========== RENDER ========== */
 function renderTabs(){
   var openN=all().filter(isOpen).length;
   var doneN=all().length-openN;
-  var tabs=[
-    ["active","Dashboard",openN],
-    ["archive","Archive",doneN],
-    ["year","Stats",null],
-    ["brands","Brands",null]
-  ];
+  var tabs=[["active","Dashboard",openN],["archive","Archive",doneN],["year","Stats",null],["brands","Brands",null]];
   document.getElementById("tabs").innerHTML=tabs.map(function(t){
     return '<button class="tab'+(state.tab===t[0]?" on":"")+'" data-tab="'+t[0]+'">'+esc(t[1])+
       (t[2]!==null?'<span class="pill">'+t[2]+"</span>":"")+"</button>";
   }).join("");
 }
-
-/* ========== RENDER: CARD ========== */
 function statCard(n,l,accent){
   return '<div class="statcard'+(accent?" accent-"+accent:"")+'"><div class="n">'+esc(n)+
     '</div><div class="l">'+esc(l)+"</div></div>";
@@ -459,7 +731,6 @@ function badge(txt,cls){ return '<span class="badge '+cls+'">'+esc(txt)+"</span>
 function cardHTML(c){
   var late=isOpen(c)&&c.deadline&&daysUntil(c.deadline)<0;
   var h='<article class="card'+(late?" is-late":"")+'" data-id="'+c.id+'">';
-
   h+='<div class="card-top"><button class="card-brand" data-act="open" data-id="'+c.id+'">'+
      esc(c.brand||"Untitled")+"</button>"+badge(STATUS[c.status].label,STATUS[c.status].cls)+"</div>";
 
@@ -492,16 +763,13 @@ function cardHTML(c){
       h+='<div class="deliv-more">+'+(c.deliverables.length-4)+" more · "+doneN+"/"+c.deliverables.length+" done</div>";
     h+="</div>";
   }
-
   if(c.usageRights) h+='<div class="snip"><b>Usage rights</b>'+esc(c.usageRights)+"</div>";
-
   if(c.links.length){
     h+='<div class="linkchips">'+c.links.map(function(l){
       var u=safeUrl(l.url);
-      return u?'<a class="linkchip" href="'+esc(u)+'" target="_blank" rel="noopener">'+esc(l.label||"Link")+" ↗</a>":"";
+      return u?'<a class="linkchip" href="'+esc(u)+'" target="_blank" rel="noopener noreferrer">'+esc(l.label||"Link")+" ↗</a>":"";
     }).join("")+"</div>";
   }
-
   h+='<div class="card-acts">';
   h+='<button class="btn btn-ghost btn-sm" data-act="open" data-id="'+c.id+'">View</button>';
   h+='<button class="btn btn-ghost btn-sm" data-act="edit" data-id="'+c.id+'">Edit</button>';
@@ -511,11 +779,19 @@ function cardHTML(c){
   return h;
 }
 
-/* ========== VIEW: DASHBOARD ========== */
+function toolbarHTML(placeholder){
+  return '<div class="toolbar"><div class="search"><span>🔍</span>'+
+    '<input id="q" type="search" placeholder="'+esc(placeholder)+'" value="'+esc(state.q)+'" /></div>'+
+    '<button class="btn btn-dark hide-sm" data-act="new">+ New collab</button></div>';
+}
+function emptyHTML(emoji,title,text,showBtn){
+  return '<div class="empty"><div class="e">'+emoji+"</div><h3>"+esc(title)+"</h3><p>"+text+"</p>"+
+    (showBtn?'<button class="btn btn-dark" data-act="new">+ Add a collab</button>':"")+"</div>";
+}
+
 function viewActive(){
   var list=openCollabs(), everyone=all();
   var now=new Date(), yr=now.getFullYear(), mo=now.getMonth();
-
   var thisMonth=everyone.filter(function(c){
     var d=countDate(c);
     return !isOpen(c)&&d&&Number(d.slice(0,4))===yr&&Number(d.slice(5,7))-1===mo;
@@ -524,7 +800,6 @@ function viewActive(){
     var d=countDate(c);
     return !isOpen(c)&&d&&Number(d.slice(0,4))===yr;
   }).length;
-
   var owed=sumMap();
   everyone.forEach(function(c){
     if(c.dealType!=="gifted"&&c.payStatus!=="paid"&&earned(c)>0) addTo(owed,c.currency,earned(c));
@@ -542,9 +817,7 @@ function viewActive(){
     statCard(fmtSum(paidYear),"Paid in "+yr,"green")+
     statCard(fmtSum(owed),"Waiting on payment","amber")+
   "</div>";
-
   h+=toolbarHTML("Search brand, brief, deliverable…");
-
   if(!list.length){
     h+=state.q
       ? emptyHTML("🔍","No matches","Nothing open matches “"+esc(state.q)+"”. Check the Archive tab for finished collabs.",false)
@@ -555,7 +828,6 @@ function viewActive(){
   return h;
 }
 
-/* ========== VIEW: ARCHIVE ========== */
 function viewArchive(){
   var list=doneCollabs();
   var h=toolbarHTML("Search finished collabs…");
@@ -573,9 +845,7 @@ function viewArchive(){
   });
   order.forEach(function(k){
     var g=groups[k];
-    var title;
-    if(k==="unknown") title="No date set";
-    else title=MONTHS_LONG[Number(k.slice(5,7))-1]+" "+k.slice(0,4);
+    var title=(k==="unknown")?"No date set":(MONTHS_LONG[Number(k.slice(5,7))-1]+" "+k.slice(0,4));
     var sum=sumMap();
     g.forEach(function(c){ addTo(sum,c.currency,earned(c)); });
     h+='<div class="grouphead"><h3>'+esc(title)+'</h3><span class="cnt">'+g.length+
@@ -585,7 +855,6 @@ function viewArchive(){
   return h;
 }
 
-/* ========== VIEW: YEAR & STATS ========== */
 function viewYear(){
   var y=state.year;
   var done=all().filter(function(c){
@@ -598,7 +867,6 @@ function viewYear(){
     if(m>=0&&m<12) perMonth[m]++;
   });
   var max=Math.max.apply(null,perMonth.concat([1]));
-
   var totalPaid=sumMap(), totalGift=sumMap(), outstanding=sumMap();
   done.forEach(function(c){
     addTo(totalPaid,c.currency,earned(c));
@@ -622,7 +890,6 @@ function viewYear(){
     '<span class="y">'+y+"</span>"+
     '<button class="iconbtn" data-act="year" data-y="'+(y+1)+'">›</button>'+
     '<span class="hint" style="margin:0">Have data in: '+esc(ylist.join(", "))+"</span></div>";
-
   h+='<div class="stats">'+
     statCard(done.length,"Collabs completed","green")+
     statCard(Object.keys(brands).length,"Different brands")+
@@ -631,20 +898,15 @@ function viewYear(){
     statCard(fmtSum(totalGift),"Gifted value","pink")+
     statCard(avgPerMonth,"Avg per month")+
   "</div>";
-
   h+='<div class="bars">'+perMonth.map(function(n,i){
     return '<div class="bar'+(n===0?" zero":"")+'" title="'+esc(MONTHS_LONG[i]+": "+n+
       (n===1?" collab":" collabs"))+'">'+
       "<em>"+(n||"")+'</em><i style="height:'+(n/max*100)+'%"></i><u>'+MONTHS[i]+"</u></div>";
   }).join("")+"</div>";
-
-  if(!done.length){
-    h+='<p class="hint" style="text-align:center;margin-top:16px">No collabs marked done in '+y+" yet.</p>";
-  }
+  if(!done.length) h+='<p class="hint" style="text-align:center;margin-top:16px">No collabs marked done in '+y+" yet.</p>";
   return h;
 }
 
-/* ========== VIEW: BRANDS ========== */
 function viewBrands(){
   var map={};
   all().forEach(function(c){
@@ -658,7 +920,6 @@ function viewBrands(){
   var rows=Object.keys(map).map(function(k){return map[k];})
     .filter(function(b){ return !state.q||b.name.toLowerCase().indexOf(state.q.toLowerCase())>=0; })
     .sort(function(a,b){ return b.items.length-a.items.length||a.name.localeCompare(b.name); });
-
   var h=toolbarHTML("Search brands…");
   if(!rows.length){
     h+=emptyHTML("🏷","No brands yet","Add a collab and the brand shows up here with its whole history.",true);
@@ -673,18 +934,8 @@ function viewBrands(){
   return h;
 }
 
-/* ========== SHARED CHROME ========== */
-function toolbarHTML(placeholder){
-  return '<div class="toolbar"><div class="search"><span>🔍</span>'+
-    '<input id="q" type="search" placeholder="'+esc(placeholder)+'" value="'+esc(state.q)+'" /></div>'+
-    '<button class="btn btn-dark hide-sm" data-act="new">+ New collab</button></div>';
-}
-function emptyHTML(emoji,title,text,showBtn){
-  return '<div class="empty"><div class="e">'+emoji+"</div><h3>"+esc(title)+"</h3><p>"+text+"</p>"+
-    (showBtn?'<button class="btn btn-dark" data-act="new">+ Add a collab</button>':"")+"</div>";
-}
-
 function render(){
+  if(!cryptoKey) return;
   renderTabs();
   var main=document.getElementById("main");
   var scroll=window.scrollY;
@@ -693,22 +944,15 @@ function render(){
   else if(state.tab==="year") main.innerHTML=viewYear();
   else main.innerHTML=viewBrands();
   window.scrollTo(0,scroll);
-  if(!storageOK){
-    var w=document.createElement("div");
-    w.className="hint";
-    w.style.cssText="text-align:center;margin-top:20px;color:#a33";
-    w.textContent="⚠ This browser is blocking local storage, so changes won't be remembered. Try a normal (non-private) window.";
-    main.appendChild(w);
-  }
 }
 
-/* ========== MODAL PLUMBING ========== */
+/* ========== MODAL ========== */
 function closeModal(){ document.getElementById("modalHost").innerHTML=""; document.body.style.overflow=""; }
 function openModal(html){
   document.getElementById("modalHost").innerHTML='<div class="overlay" data-overlay="1">'+html+"</div>";
   document.body.style.overflow="hidden";
-  var host=document.getElementById("modalHost");
-  host.querySelector(".sheet").scrollTop=0;
+  var s=document.querySelector(".sheet");
+  if(s) s.scrollTop=0;
 }
 function toast(msg){
   var t=document.getElementById("toast");
@@ -879,7 +1123,6 @@ function openForm(id){
 function detailHTML(c){
   var h='<div class="sheet"><div class="sheet-head"><h2>'+esc(c.brand||"Untitled")+"</h2>"+
     '<button type="button" class="iconbtn" data-act="close">×</button></div><div class="sheet-body">';
-
   var bl=[badge(STATUS[c.status].label,STATUS[c.status].cls)];
   if(c.dealType!=="paid") bl.push(badge(c.dealType==="gifted"?"Gifted":"Paid + gifted","b-gift"));
   if(c.dealType!=="gifted"&&PAY[c.payStatus].label) bl.push(badge(PAY[c.payStatus].label,PAY[c.payStatus].cls));
@@ -899,11 +1142,10 @@ function detailHTML(c){
   if(c.contactEmail) rows.push(["Email",c.contactEmail]);
   if(c.exclusivity) rows.push(["Exclusivity",c.exclusivity]);
   if(rows.length){
-    h+="<dl class=\"dl\">"+rows.map(function(r){
+    h+='<dl class="dl">'+rows.map(function(r){
       return "<dt>"+esc(r[0])+"</dt><dd>"+esc(r[1])+"</dd>";
     }).join("")+"</dl>";
   }
-
   if(c.deliverables.length){
     h+='<fieldset><legend>Deliverables ('+c.deliverables.filter(function(d){return d.done;}).length+
        "/"+c.deliverables.length+')</legend><div class="deliv">';
@@ -919,10 +1161,9 @@ function detailHTML(c){
   if(c.links.length){
     h+='<fieldset><legend>Links</legend><div class="linkchips">'+c.links.map(function(l){
       var u=safeUrl(l.url);
-      return u?'<a class="linkchip" href="'+esc(u)+'" target="_blank" rel="noopener">'+esc(l.label||"Link")+" ↗</a>":"";
+      return u?'<a class="linkchip" href="'+esc(u)+'" target="_blank" rel="noopener noreferrer">'+esc(l.label||"Link")+" ↗</a>":"";
     }).join("")+"</div></fieldset>";
   }
-
   h+="</div>";
   h+='<div class="sheet-foot">'+
      '<button type="button" class="btn btn-ghost" data-act="close">Close</button>'+
@@ -943,7 +1184,6 @@ function brandDetailHTML(name){
   });
   var sum=sumMap(), gift=sumMap();
   items.forEach(function(c){ addTo(sum,c.currency,earned(c)); addTo(gift,c.currency,giftValue(c)); });
-
   var h='<div class="sheet"><div class="sheet-head"><h2>'+esc(name)+"</h2>"+
     '<button type="button" class="iconbtn" data-act="close">×</button></div><div class="sheet-body">';
   h+='<div class="stats" style="margin-bottom:18px">'+
@@ -965,39 +1205,130 @@ function brandDetailHTML(name){
   return h;
 }
 
-/* ========== EXPORT / IMPORT ========== */
-function doExport(){
-  var stamp=todayISO();
-  var blob=new Blob([JSON.stringify(db,null,2)],{type:"application/json"});
+/* ========== BACKUP & SETTINGS ========== */
+function menuHTML(){
+  return '<div class="sheet"><div class="sheet-head"><h2>Backup &amp; settings</h2>'+
+    '<button type="button" class="iconbtn" data-act="close">×</button></div><div class="sheet-body">'+
+    '<div class="mlist">'+
+      '<button class="mitem" data-act="export-enc"><span class="mi">🔐</span><span><b>Download encrypted backup</b>'+
+        '<span>Locked with your password. Safe to keep in iCloud, Drive or email.</span></span></button>'+
+      '<button class="mitem" data-act="export-plain"><span class="mi">📄</span><span><b>Download readable copy</b>'+
+        '<span>Plain JSON for your accountant or a spreadsheet. Anyone who opens the file can read it.</span></span></button>'+
+      '<button class="mitem" data-act="import"><span class="mi">⬆</span><span><b>Import a backup</b>'+
+        '<span>Restore, or copy your collabs onto another device. Never creates duplicates.</span></span></button>'+
+      '<button class="mitem" data-act="changepw"><span class="mi">🔑</span><span><b>Change password</b>'+
+        '<span>Re-encrypts everything with the new one.</span></span></button>'+
+      '<button class="mitem danger" data-act="lock"><span class="mi">🔒</span><span><b>Lock now</b>'+
+        '<span>Also locks itself after 15 minutes idle, and whenever you close the tab.</span></span></button>'+
+    "</div>"+
+    '<p class="hint" style="margin-top:16px">Your collabs live only on this device, encrypted with your password. '+
+    'They do not sync — export a backup to move them somewhere else.</p>'+
+    '</div><div class="sheet-foot"><button type="button" class="btn btn-ghost" data-act="close">Close</button></div></div>';
+}
+
+function download(filename,text){
+  var blob=new Blob([text],{type:"application/json"});
   var a=document.createElement("a");
   a.href=URL.createObjectURL(blob);
-  a.download="collab-crm-backup-"+stamp+".json";
+  a.download=filename;
   document.body.appendChild(a); a.click(); document.body.removeChild(a);
   setTimeout(function(){URL.revokeObjectURL(a.href);},1000);
-  toast("Backup downloaded — keep it somewhere safe");
 }
+function exportEncrypted(){
+  var raw=localStorage.getItem(VAULT_KEY);
+  if(!raw) return toast("Nothing to back up yet");
+  download("collab-crm-encrypted-"+todayISO()+".json",raw);
+  closeModal();
+  toast("Encrypted backup downloaded");
+}
+function exportPlain(){
+  if(!confirm("This file is NOT encrypted — anyone who opens it can read every collab, fee and contact.\n\nDownload it anyway?")) return;
+  download("collab-crm-readable-"+todayISO()+".json",JSON.stringify(db,null,2));
+  closeModal();
+  toast("Readable copy downloaded — store it carefully");
+}
+
+function mergeIn(collabs){
+  var existing={};
+  db.collabs.forEach(function(c){ existing[c.id]=true; });
+  var added=0;
+  collabs.forEach(function(c){
+    var n=normalize(c);
+    if(existing[n.id]) return;   /* already here — keep what's on this device */
+    db.collabs.push(n); added++;
+  });
+  save(); render();
+  toast(added?("Imported "+added+" collab"+(added===1?"":"s")):"Nothing new — already up to date");
+}
+
 function doImport(file){
   var r=new FileReader();
   r.onload=function(){
-    try{
-      var p=JSON.parse(r.result);
-      if(!p||!Array.isArray(p.collabs)) throw new Error("not a CRM backup");
-      var existing={};
-      db.collabs.forEach(function(c){ existing[c.id]=true; });
-      var added=0;
-      p.collabs.forEach(function(c){
-        var n=normalize(c);
-        if(existing[n.id]) return;      // already have it — keep what's on this device
-        db.collabs.push(n); added++;
-      });
-      save(); render();
-      toast(added?("Imported "+added+" collab"+(added===1?"":"s")):"Nothing new — already up to date");
-    }catch(e){
-      toast("That file doesn't look like a CRM backup");
-      console.warn(e);
+    var parsed;
+    try{ parsed=JSON.parse(r.result); }
+    catch(e){ return toast("That file isn't a CRM backup"); }
+
+    if(parsed&&parsed.ct&&parsed.salt&&parsed.iv){
+      var pw=prompt("This backup is encrypted.\n\nEnter the password that was used when it was created:");
+      if(pw===null) return;
+      deriveKey(pw,unb64(parsed.salt),parsed.iter||PBKDF2_ITER)
+        .then(function(k){ return decryptWith(k,parsed.iv,parsed.ct); })
+        .then(function(data){
+          if(!data||!Array.isArray(data.collabs)) throw new Error("bad payload");
+          closeModal(); mergeIn(data.collabs);
+        })
+        .catch(function(){ toast("Wrong password for that backup file"); });
+      return;
     }
+    if(parsed&&Array.isArray(parsed.collabs)){ closeModal(); return mergeIn(parsed.collabs); }
+    toast("That file isn't a CRM backup");
   };
   r.readAsText(file);
+}
+
+function changePasswordHTML(){
+  return '<div class="sheet"><form id="pwForm"><div class="sheet-head"><h2>Change password</h2>'+
+    '<button type="button" class="iconbtn" data-act="close">×</button></div><div class="sheet-body">'+
+    '<div class="warnbox">Everything is re-encrypted with the new password. Older backup files keep their '+
+    '<b>old</b> password — label them if you keep more than one.</div>'+
+    '<div class="gate-err" hidden></div>'+
+    '<div class="f"><label>Current password</label><input type="password" id="cur" autocomplete="current-password" required /></div>'+
+    '<div class="f"><label>New password (min 8 characters)</label><input type="password" id="new1" autocomplete="new-password" required /></div>'+
+    '<div class="f"><label>Repeat new password</label><input type="password" id="new2" autocomplete="new-password" required /></div>'+
+    '</div><div class="sheet-foot">'+
+    '<button type="button" class="btn btn-ghost" data-act="close">Cancel</button>'+
+    '<button type="submit" class="btn btn-dark" id="pwGo">Change it</button></div></form></div>';
+}
+function openChangePassword(){
+  openModal(changePasswordHTML());
+  document.getElementById("pwForm").addEventListener("submit",function(e){
+    e.preventDefault();
+    var cur=document.getElementById("cur").value;
+    var n1=document.getElementById("new1").value, n2=document.getElementById("new2").value;
+    var err=document.querySelector(".sheet .gate-err");
+    function fail(m){ err.textContent=m; err.hidden=false; }
+    if(n1.length<8) return fail("The new password needs at least 8 characters.");
+    if(n1!==n2) return fail("The two new passwords do not match.");
+    var vault=readVault();
+    if(!vault) return fail("No vault found.");
+    var go=document.getElementById("pwGo");
+    go.disabled=true; go.textContent="Working…";
+    deriveKey(cur,unb64(vault.salt),vault.iter||PBKDF2_ITER)
+      .then(function(k){ return decryptWith(k,vault.iv,vault.ct); })
+      .then(function(){
+        var salt=randomBytes(16);
+        return deriveKey(n1,salt,PBKDF2_ITER).then(function(nk){
+          cryptoKey=nk; vaultMeta={salt:salt,iter:PBKDF2_ITER};
+          return save();
+        });
+      })
+      .then(function(){ closeModal(); toast("Password changed"); })
+      .catch(function(){
+        go.disabled=false; go.textContent="Change it";
+        fail("That current password isn't right.");
+      });
+  });
+  setTimeout(function(){ var c=document.getElementById("cur"); if(c) c.focus(); },90);
 }
 
 /* ========== EVENTS ========== */
@@ -1006,11 +1337,8 @@ document.addEventListener("click",function(e){
   if(!t) return;
 
   if(t.hasAttribute("data-tab")){
-    state.tab=t.getAttribute("data-tab");
-    state.q="";
-    render();
-    window.scrollTo(0,0);
-    return;
+    state.tab=t.getAttribute("data-tab"); state.q="";
+    render(); window.scrollTo(0,0); return;
   }
   if(t.hasAttribute("data-overlay")&&e.target===t){ closeModal(); return; }
 
@@ -1023,6 +1351,11 @@ document.addEventListener("click",function(e){
   else if(act==="close"){ closeModal(); }
   else if(act==="brand"){ openModal(brandDetailHTML(t.getAttribute("data-brand"))); }
   else if(act==="year"){ state.year=Number(t.getAttribute("data-y")); render(); }
+  else if(act==="export-enc"){ exportEncrypted(); }
+  else if(act==="export-plain"){ exportPlain(); }
+  else if(act==="import"){ document.getElementById("fileIn").click(); }
+  else if(act==="changepw"){ openChangePassword(); }
+  else if(act==="lock"){ lock(); }
   else if(act==="toggle"){
     var col=byId(id), i=Number(t.getAttribute("data-i"));
     if(col&&col.deliverables[i]){
@@ -1033,7 +1366,8 @@ document.addEventListener("click",function(e){
       render();
       if(sheet){
         openModal(detailHTML(byId(id)));
-        document.querySelector(".sheet").scrollTop=sheetTop;
+        var s2=document.querySelector(".sheet");
+        if(s2) s2.scrollTop=sheetTop;
       }
     }
   }
@@ -1042,8 +1376,7 @@ document.addEventListener("click",function(e){
     if(f){
       f.status="done";
       if(!f.completedDate) f.completedDate=todayISO();
-      put(f); closeModal(); render();
-      toast(f.brand+" archived ✓");
+      put(f); closeModal(); render(); toast(f.brand+" archived ✓");
     }
   }
   else if(act==="reopen"){
@@ -1077,9 +1410,7 @@ document.addEventListener("click",function(e){
       return false;
     });
     if(firstEmpty) firstEmpty.value=t.getAttribute("data-v");
-    else{
-      dl.insertAdjacentHTML("beforeend",listRowHTML("deliv",t.getAttribute("data-v"),""));
-    }
+    else dl.insertAdjacentHTML("beforeend",listRowHTML("deliv",t.getAttribute("data-v"),""));
   }
   else if(act==="chip-rights"){
     var ta=document.querySelector('[name="usageRights"]');
@@ -1098,23 +1429,26 @@ document.addEventListener("input",function(e){
     if(again){ again.focus(); try{again.setSelectionRange(pos,pos);}catch(_){} }
   }
 });
-
 document.addEventListener("keydown",function(e){
   if(e.key==="Escape"&&document.querySelector(".overlay")) closeModal();
 });
 
 document.getElementById("btnNewTop").addEventListener("click",function(){openForm(null);});
 document.getElementById("btnNewFab").addEventListener("click",function(){openForm(null);});
-document.getElementById("btnExport").addEventListener("click",doExport);
-document.getElementById("btnImport").addEventListener("click",function(){document.getElementById("fileIn").click();});
+document.getElementById("btnLock").addEventListener("click",function(){lock();});
+document.getElementById("btnMenu").addEventListener("click",function(){openModal(menuHTML());});
 document.getElementById("fileIn").addEventListener("change",function(e){
   if(e.target.files&&e.target.files[0]) doImport(e.target.files[0]);
   e.target.value="";
 });
 
 /* ========== GO ========== */
-load();
-render();
+renderGate();
+if("serviceWorker" in navigator && window.isSecureContext){
+  window.addEventListener("load",function(){
+    navigator.serviceWorker.register("sw.js").catch(function(){});
+  });
+}
 })();
 </script>
 </body>
