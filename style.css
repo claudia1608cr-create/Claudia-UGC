@@ -228,36 +228,34 @@ img { max-width: 100%; display: block; }
 .hero-visual { position: relative; display: flex; justify-content: center; align-items: flex-start; }
 
 /* PLAYING CARD */
-.playing-card-wrap {
+.playing-card-outer {
   animation: float 4s ease-in-out infinite;
-  filter: drop-shadow(0 24px 48px rgba(0,0,0,0.22));
 }
 
-.playing-card {
+.playing-card-wrap {
   position: relative;
-  width: 300px;
-  height: 500px;
-  border-radius: 24px;
-  background: #fff8f5;
-  overflow: hidden;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-}
-
-/* pink fur background using layered radial gradients + SVG noise */
-.playing-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 24px;
+  padding: 28px;
+  border-radius: 36px;
   background:
     radial-gradient(ellipse 60% 40% at 20% 30%, #f9c8d4 0%, transparent 70%),
     radial-gradient(ellipse 50% 60% at 80% 60%, #f4b8c8 0%, transparent 65%),
     radial-gradient(ellipse 70% 50% at 50% 80%, #fbd5df 0%, transparent 70%),
     radial-gradient(ellipse 80% 80% at 50% 50%, #fce4ea 0%, #f9c8d4 60%, #f0a8bc 100%);
   filter: url(#fur-noise);
-  z-index: 0;
+}
+
+.playing-card {
+  position: relative;
+  width: 300px;
+  height: 500px;
+  border-radius: 20px;
+  background: #ffffff;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+  filter: none;
 }
 
 .card-corner {
@@ -299,7 +297,7 @@ img { max-width: 100%; display: block; }
 }
 
 .card-photo img {
-  width: 90%;
+  width: 105%;
   height: auto;
   object-fit: contain;
   display: block;
