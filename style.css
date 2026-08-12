@@ -143,6 +143,16 @@ img { max-width: 100%; display: block; }
   border-radius: 100px;
   margin-bottom: 1.5rem;
   letter-spacing: 0.05em;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.hero-badge-sub {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 400;
+  opacity: 0.8;
+  letter-spacing: 0.04em;
 }
 
 .hero-title {
@@ -334,6 +344,8 @@ img { max-width: 100%; display: block; }
 .brand-scandy   { font-weight: 400; text-transform: lowercase; }
 .brand-lyko     { letter-spacing: 0.12em; }
 .brand-dashl    { font-weight: 600; }
+.brand-escada   { letter-spacing: 0.18em; font-weight: 300; color: #4a1a3a; }
+.brand-gliss    { font-weight: 700; color: #111; }
 
 .marquee-wrapper:hover .marquee-track {
   animation-play-state: paused;
