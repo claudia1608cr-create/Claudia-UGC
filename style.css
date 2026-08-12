@@ -227,49 +227,82 @@ img { max-width: 100%; display: block; }
 
 .hero-visual { position: relative; display: flex; justify-content: center; align-items: flex-start; }
 
-/* SCRAPBOOK collage */
-.scrapbook {
-  position: relative;
-  width: 360px;
-  height: 560px;
+/* PLAYING CARD */
+.playing-card-wrap {
   animation: float 4s ease-in-out infinite;
+  filter: drop-shadow(0 24px 48px rgba(0,0,0,0.22));
 }
 
-.scrap {
-  position: absolute;
+.playing-card {
+  position: relative;
+  width: 300px;
+  height: 500px;
+  border-radius: 24px;
+  background: #fff8f5;
   overflow: hidden;
-  border-radius: 6px;
-  background: var(--white);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
 }
 
-.scrap img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+/* pink fur background using layered radial gradients + SVG noise */
+.playing-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  background:
+    radial-gradient(ellipse 60% 40% at 20% 30%, #f9c8d4 0%, transparent 70%),
+    radial-gradient(ellipse 50% 60% at 80% 60%, #f4b8c8 0%, transparent 65%),
+    radial-gradient(ellipse 70% 50% at 50% 80%, #fbd5df 0%, transparent 70%),
+    radial-gradient(ellipse 80% 80% at 50% 50%, #fce4ea 0%, #f9c8d4 60%, #f0a8bc 100%);
+  filter: url(#fur-noise);
+  z-index: 0;
 }
 
-.scrap-main {
-  width: 290px;
-  height: 430px;
-  top: 20px;
-  left: 40px;
-  transform: rotate(-3deg);
-  z-index: 2;
-  padding: 10px 10px 38px 10px;
-  background: #fff;
-}
-
-.scrap-small {
-  width: 200px;
-  height: 240px;
-  bottom: 10px;
-  right: 0px;
-  transform: rotate(4deg);
+.card-corner {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1;
   z-index: 3;
-  padding: 8px 8px 30px 8px;
-  background: #fff;
+  color: #2a1a1a;
+}
+
+.card-corner-tl { top: 14px; left: 16px; }
+.card-corner-br {
+  bottom: 14px;
+  right: 16px;
+  transform: rotate(180deg);
+}
+
+.card-letter {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.card-suit {
+  font-size: 0.9rem;
+  margin-top: 2px;
+}
+
+.card-photo {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.card-photo img {
+  width: 90%;
+  height: auto;
+  object-fit: contain;
+  display: block;
 }
 
 /* keep old class in case referenced */
