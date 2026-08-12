@@ -166,6 +166,14 @@ img { max-width: 100%; display: block; }
   color: var(--dark);
 }
 
+.hero-cursive {
+  font-family: 'Pinyon Script', cursive;
+  font-size: clamp(3rem, 6vw, 5rem);
+  line-height: 1.15;
+  color: var(--dark);
+  font-weight: 400;
+}
+
 .hero-text {
   color: var(--muted);
   font-size: 0.95rem;
