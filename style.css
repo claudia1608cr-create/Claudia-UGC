@@ -385,14 +385,43 @@ img { max-width: 100%; display: block; }
   margin-bottom: 1.5rem;
 }
 
-.marquee-wrapper { overflow: hidden; }
+.marquee-outer {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.marquee-arrow {
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1.5px solid var(--pink-light);
+  background: var(--white);
+  color: var(--dark);
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.marquee-arrow:hover { background: var(--pink-light); border-color: var(--pink); }
+
+.marquee-wrapper {
+  overflow-x: scroll;
+  scrollbar-width: none;
+  flex: 1;
+}
+
+.marquee-wrapper::-webkit-scrollbar { display: none; }
 
 .marquee-track {
   display: flex;
   align-items: center;
   gap: 2rem;
   width: max-content;
-  animation: marquee 30s linear infinite;
   white-space: nowrap;
 }
 
@@ -443,14 +472,6 @@ img { max-width: 100%; display: block; }
 .brand-escada   { letter-spacing: 0.18em; font-weight: 300; color: #4a1a3a; }
 .brand-gliss    { font-weight: 700; color: #111; }
 
-.marquee-wrapper:hover .marquee-track {
-  animation-play-state: paused;
-}
-
-@keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
 
 /* ===== TESTIMONIALS ===== */
 .testimonials {

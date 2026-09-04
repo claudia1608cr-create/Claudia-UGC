@@ -36,6 +36,39 @@ document.querySelectorAll('.video-card, .process-step, .about-inner, .contact-in
 
 document.addEventListener('animationend', () => {}, { once: true });
 
+// Marquee auto-scroll + arrow controls
+const marqueeWrapper = document.querySelector('.marquee-wrapper');
+const marqueeTrack = document.querySelector('.marquee-track');
+let autoScroll = true;
+let resumeTimeout;
+
+function marqueeLoop() {
+  if (autoScroll && marqueeWrapper) {
+    marqueeWrapper.scrollLeft += 1;
+    if (marqueeWrapper.scrollLeft >= marqueeTrack.scrollWidth / 2) {
+      marqueeWrapper.scrollLeft = 0;
+    }
+  }
+  requestAnimationFrame(marqueeLoop);
+}
+if (marqueeWrapper) marqueeLoop();
+
+function pauseAndResume() {
+  autoScroll = false;
+  clearTimeout(resumeTimeout);
+  resumeTimeout = setTimeout(() => { autoScroll = true; }, 3000);
+}
+
+document.querySelector('.marquee-arrow-left')?.addEventListener('click', () => {
+  pauseAndResume();
+  marqueeWrapper.scrollBy({ left: -300, behavior: 'smooth' });
+});
+
+document.querySelector('.marquee-arrow-right')?.addEventListener('click', () => {
+  pauseAndResume();
+  marqueeWrapper.scrollBy({ left: 300, behavior: 'smooth' });
+});
+
 // Inject visible class CSS
 const style = document.createElement('style');
 style.textContent = '.visible { opacity: 1 !important; transform: translateY(0) !important; }';
