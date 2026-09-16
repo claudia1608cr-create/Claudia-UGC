@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Claudia — UGC Portfolio</title>
+  <title>Claudia | UGC for Nordic audiences</title>
+  <meta name="description" content="UGC, campaigns and event content for Nordic audiences. Claudia Ramstedt creates in Swedish, Finnish and English, from concept to final edit." />
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23F8D7DC'/><text y='72' x='50' text-anchor='middle' font-size='48' font-family='Georgia,serif' font-weight='700' fill='%23c47a8a'>CR</text></svg>" />
   <link rel="shortcut icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23F8D7DC'/><text y='72' x='50' text-anchor='middle' font-size='48' font-family='Georgia,serif' font-weight='700' fill='%23c47a8a'>CR</text></svg>" />
   <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23F8D7DC'/><text y='72' x='50' text-anchor='middle' font-size='48' font-family='Georgia,serif' font-weight='700' fill='%23c47a8a'>CR</text></svg>" />
@@ -31,13 +32,13 @@
       <span class="nav-name">Claudia Ramstedt</span>
       <span class="nav-sub">UGC Portfolio</span>
     </div>
-    <ul class="nav-links">
+    <ul class="nav-links" id="main-navigation">
       <li><a href="#home">About</a></li>
       <li><a href="#work">Work</a></li>
       <li><a href="#process">Process</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-    <button class="nav-toggle" aria-label="menu">&#9776;</button>
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="main-navigation">&#9776;</button>
   </nav>
 
   <!-- HERO -->
@@ -47,30 +48,29 @@
       <h1 class="hero-title">
         <span class="hero-cursive">Content that<br>actually converts.</span>
       </h1>
-      <p class="hero-specialty">UGC · Campaigns · Events &nbsp;·&nbsp; Finland / Nordics</p>
+      <p class="hero-positioning">For Nordic audiences.<br><span>In Swedish, Finnish &amp; English.</span></p>
+      <p class="hero-specialty">UGC, campaigns and event content.<br>From the first idea to the final edit.</p>
       <p class="hero-text">
-        Hi! I'm Claudia, a Creative Strategist &amp; Content Creator based in Finland. I develop campaign concepts and create authentic, high-performing content, from the <strong><em style="color:#2A2A2A">big idea</em></strong> to the <strong><em style="color:#2A2A2A">final content</em></strong>. My focus is turning brand messages and visions into content people actually want to watch, engage with and remember.
+        Hi, I'm Claudia, a Creative Strategist &amp; Content Creator based in Finland. I help brands turn their ideas into content that feels natural, connects with their audience and brings their message to life.
       </p>
       <div class="hero-stats">
         <div class="stat">
-          <span class="stat-number">1+</span>
-          <span class="stat-label">Years experience</span>
-        </div>
-        <div class="stat-divider"></div>
-        <div class="stat">
           <span class="stat-number">50+</span>
-          <span class="stat-label">Brand collabs</span>
+          <span class="stat-label">Brand collaborations</span>
         </div>
-        <div class="stat-divider"></div>
         <div class="stat">
           <span class="stat-number">3</span>
           <span class="stat-label">Languages</span>
           <span class="stat-langs">Swedish · Finnish · English</span>
         </div>
+        <div class="stat">
+          <span class="stat-number stat-concept">Concept →<br>final edit</span>
+          <span class="stat-label">Creative strategy &amp; production</span>
+        </div>
       </div>
       <div class="hero-ctas">
         <a href="#work" class="btn btn-dark">See my work</a>
-        <a href="#contact" class="btn btn-pink">Let's work together</a>
+        <a href="#contact" class="btn btn-pink">Let's talk about your project</a>
       </div>
       <div class="hero-socials">
         <a href="https://www.instagram.com/ugc.claudia_" target="_blank" rel="noopener" class="social-link">
@@ -176,97 +176,221 @@
   <section class="work" id="work">
     <div class="section-tag">Portfolio</div>
     <h2 class="section-title">Selected work</h2>
-    <div class="work-grid">
-      <div class="video-card">
+    <p class="work-intro">A selection of content across languages, industries and formats.</p>
+    <nav class="language-nav" aria-label="Browse work by language" hidden>
+      <a href="#work-swedish">Swedish</a>
+      <a href="#work-finnish">Finnish</a>
+      <a href="#work-english">English</a>
+      <a href="#work-music">Music only</a>
+    </nav>
+    <div id="portfolio-library" tabindex="-1">
+    <div class="work-grid" id="featured-work">
+      <article class="video-card" data-language="swedish" data-featured="true">
         <div class="video-wrap">
-          <iframe src="https://www.youtube.com/embed/O1Oa25pj_bY?modestbranding=1&rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen title="Schwarzkopf GLISS SV"></iframe>
+          <a class="video-play" href="https://www.youtube.com/watch?v=O1Oa25pj_bY" target="_blank" rel="noopener" data-video-src="https://www.youtube.com/embed/O1Oa25pj_bY?rel=0" aria-label="Play Schwarzkopf GLISS in Swedish">
+            <img src="https://i.ytimg.com/vi/O1Oa25pj_bY/maxresdefault.jpg" alt="" loading="lazy" width="480" height="360" />
+            <span class="play-icon" aria-hidden="true">▶</span>
+            <span class="play-caption">Watch video</span>
+          </a>
         </div>
-        <div class="video-meta"><span class="video-brand">Schwarzkopf GLISS (SV)</span><span class="video-category">Hårvård</span></div>
-      </div>
-      <div class="video-card">
+        <div class="video-meta">
+          <h3 class="video-brand">Schwarzkopf GLISS</h3>
+          <p class="video-category">Haircare demo · Swedish</p>
+        </div>
+      </article>
+      <article class="video-card" data-language="finnish" data-featured="true">
         <div class="video-wrap">
-          <iframe src="https://www.youtube.com/embed/mBa-VuxCohE?modestbranding=1&rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen title="CAIA FIN"></iframe>
+          <a class="video-play" href="https://www.youtube.com/watch?v=mBa-VuxCohE" target="_blank" rel="noopener" data-video-src="https://www.youtube.com/embed/mBa-VuxCohE?rel=0" aria-label="Play CAIA in Finnish">
+            <img src="https://i.ytimg.com/vi/mBa-VuxCohE/maxresdefault.jpg" alt="" loading="lazy" width="480" height="360" />
+            <span class="play-icon" aria-hidden="true">▶</span>
+            <span class="play-caption">Watch video</span>
+          </a>
         </div>
-        <div class="video-meta"><span class="video-brand">CAIA FIN</span><span class="video-category">Makeup</span></div>
-      </div>
-      <div class="video-card">
+        <div class="video-meta">
+          <h3 class="video-brand">CAIA</h3>
+          <p class="video-category">Makeup demo · Finnish</p>
+        </div>
+      </article>
+      <article class="video-card" data-language="finnish" data-featured="true">
         <div class="video-wrap">
-          <iframe src="https://www.youtube.com/embed/RmqHFoZq64k?modestbranding=1&rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen title="Magnum"></iframe>
+          <a class="video-play" href="https://www.youtube.com/watch?v=eJ7H4jAOgkE" target="_blank" rel="noopener" data-video-src="https://www.youtube.com/embed/eJ7H4jAOgkE?rel=0" aria-label="Play VISA in Finnish">
+            <img src="https://i.ytimg.com/vi/eJ7H4jAOgkE/maxresdefault.jpg" alt="" loading="lazy" width="480" height="360" />
+            <span class="play-icon" aria-hidden="true">▶</span>
+            <span class="play-caption">Watch video</span>
+          </a>
         </div>
-        <div class="video-meta"><span class="video-brand">Magnum</span><span class="video-category">Food & Drink</span></div>
-      </div>
-      <div class="video-card">
+        <div class="video-meta">
+          <h3 class="video-brand">VISA</h3>
+          <p class="video-category">Brand content · Finnish</p>
+        </div>
+      </article>
+      <article class="video-card" data-language="english" data-featured="true">
         <div class="video-wrap">
-          <iframe src="https://www.youtube.com/embed/fShm2kn_z6o?modestbranding=1&rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen title="Annele"></iframe>
+          <a class="video-play" href="https://www.youtube.com/watch?v=PYEZHvtzt2w" target="_blank" rel="noopener" data-video-src="https://www.youtube.com/embed/PYEZHvtzt2w?rel=0" aria-label="Play Withings in English">
+            <img src="https://i.ytimg.com/vi/PYEZHvtzt2w/maxresdefault.jpg" alt="" loading="lazy" width="480" height="360" />
+            <span class="play-icon" aria-hidden="true">▶</span>
+            <span class="play-caption">Watch video</span>
+          </a>
         </div>
-        <div class="video-meta"><span class="video-brand">Annele</span><span class="video-category">Jewellery</span></div>
-      </div>
-      <div class="video-card">
+        <div class="video-meta">
+          <h3 class="video-brand">Withings</h3>
+          <p class="video-category">Tech &amp; wellness · English</p>
+        </div>
+      </article>
+      <article class="video-card" data-language="english" data-featured="true">
         <div class="video-wrap">
-          <iframe src="https://www.youtube.com/embed/eJ7H4jAOgkE?modestbranding=1&rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen title="VISA"></iframe>
+          <a class="video-play" href="https://www.youtube.com/watch?v=U_ExqJCHAJA" target="_blank" rel="noopener" data-video-src="https://www.youtube.com/embed/U_ExqJCHAJA?rel=0" aria-label="Play Oddlygood in English">
+            <img src="https://i.ytimg.com/vi/U_ExqJCHAJA/maxresdefault.jpg" alt="" loading="lazy" width="480" height="360" />
+            <span class="play-icon" aria-hidden="true">▶</span>
+            <span class="play-caption">Watch video</span>
+          </a>
         </div>
-        <div class="video-meta"><span class="video-brand">VISA</span><span class="video-category">Tech</span></div>
-      </div>
-      <div class="video-card">
+        <div class="video-meta">
+          <h3 class="video-brand">Oddlygood</h3>
+          <p class="video-category">Interview style · English</p>
+        </div>
+      </article>
+      <article class="video-card" data-language="finnish" data-featured="true">
         <div class="video-wrap">
-          <iframe src="https://www.youtube.com/embed/RcenwENGGS4?modestbranding=1&rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen title="Easylash"></iframe>
+          <a class="video-play" href="https://www.youtube.com/watch?v=wGNxopDfmGM" target="_blank" rel="noopener" data-video-src="https://www.youtube.com/embed/wGNxopDfmGM?rel=0" aria-label="Play Magnum Pop-up store in Finnish">
+            <img src="https://i.ytimg.com/vi/wGNxopDfmGM/maxresdefault.jpg" alt="" loading="lazy" width="480" height="360" />
+            <span class="play-icon" aria-hidden="true">▶</span>
+            <span class="play-caption">Watch video</span>
+          </a>
         </div>
-        <div class="video-meta"><span class="video-brand">Easylash FIN</span><span class="video-category">Beauty</span></div>
-      </div>
-      <div class="video-card">
+        <div class="video-meta">
+          <h3 class="video-brand">Magnum Pop-up store</h3>
+          <p class="video-category">Event coverage · Finnish</p>
+        </div>
+      </article>
+      <article class="video-card" data-language="music" hidden>
         <div class="video-wrap">
-          <iframe src="https://www.youtube.com/embed/PYEZHvtzt2w?modestbranding=1&rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen title="Withings"></iframe>
+          <a class="video-play" href="https://www.youtube.com/watch?v=RmqHFoZq64k" target="_blank" rel="noopener" data-video-src="https://www.youtube.com/embed/RmqHFoZq64k?rel=0" aria-label="Play Magnum">
+            <img src="https://i.ytimg.com/vi/RmqHFoZq64k/maxresdefault.jpg" alt="" loading="lazy" width="480" height="360" />
+            <span class="play-icon" aria-hidden="true">▶</span>
+            <span class="play-caption">Watch video</span>
+          </a>
         </div>
-        <div class="video-meta"><span class="video-brand">Withings</span><span class="video-category">Tech & Wellness</span></div>
-      </div>
-      <div class="video-card">
+        <div class="video-meta">
+          <h3 class="video-brand">Magnum</h3>
+          <p class="video-category">Product content · Music only</p>
+        </div>
+      </article>
+      <article class="video-card" data-language="music" hidden>
         <div class="video-wrap">
-          <iframe src="https://www.youtube.com/embed/aHhsV8t60rY?modestbranding=1&rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen title="Madlady"></iframe>
+          <a class="video-play" href="https://www.youtube.com/watch?v=fShm2kn_z6o" target="_blank" rel="noopener" data-video-src="https://www.youtube.com/embed/fShm2kn_z6o?rel=0" aria-label="Play Annele">
+            <img src="https://i.ytimg.com/vi/fShm2kn_z6o/maxresdefault.jpg" alt="" loading="lazy" width="480" height="360" />
+            <span class="play-icon" aria-hidden="true">▶</span>
+            <span class="play-caption">Watch video</span>
+          </a>
         </div>
-        <div class="video-meta"><span class="video-brand">Madlady</span><span class="video-category">Fashion</span></div>
-      </div>
-      <div class="video-card">
+        <div class="video-meta">
+          <h3 class="video-brand">Annele</h3>
+          <p class="video-category">Jewellery · Music only</p>
+        </div>
+      </article>
+      <article class="video-card" data-language="english" hidden>
         <div class="video-wrap">
-          <iframe src="https://www.youtube.com/embed/5H2T9EnYOP0?modestbranding=1&rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen title="Escada"></iframe>
+          <a class="video-play" href="https://www.youtube.com/watch?v=RcenwENGGS4" target="_blank" rel="noopener" data-video-src="https://www.youtube.com/embed/RcenwENGGS4?rel=0" aria-label="Play Easylash in English">
+            <img src="https://i.ytimg.com/vi/RcenwENGGS4/maxresdefault.jpg" alt="" loading="lazy" width="480" height="360" />
+            <span class="play-icon" aria-hidden="true">▶</span>
+            <span class="play-caption">Watch video</span>
+          </a>
         </div>
-        <div class="video-meta"><span class="video-brand">Escada</span><span class="video-category">Lifestyle</span></div>
-      </div>
-      <div class="video-card">
+        <div class="video-meta">
+          <h3 class="video-brand">Easylash</h3>
+          <p class="video-category">Beauty · English</p>
+        </div>
+      </article>
+      <article class="video-card" data-language="finnish" hidden>
         <div class="video-wrap">
-          <iframe src="https://www.youtube.com/embed/aCNryroIafM?modestbranding=1&rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen title="Clue"></iframe>
+          <a class="video-play" href="https://www.youtube.com/watch?v=aHhsV8t60rY" target="_blank" rel="noopener" data-video-src="https://www.youtube.com/embed/aHhsV8t60rY?rel=0" aria-label="Play Madlady in Finnish">
+            <img src="https://i.ytimg.com/vi/aHhsV8t60rY/maxresdefault.jpg" alt="" loading="lazy" width="480" height="360" />
+            <span class="play-icon" aria-hidden="true">▶</span>
+            <span class="play-caption">Watch video</span>
+          </a>
         </div>
-        <div class="video-meta"><span class="video-brand">Clue</span><span class="video-category">Health & Wellness</span></div>
-      </div>
-      <div class="video-card">
+        <div class="video-meta">
+          <h3 class="video-brand">Madlady</h3>
+          <p class="video-category">Fashion · Finnish</p>
+        </div>
+      </article>
+      <article class="video-card" data-language="music" hidden>
         <div class="video-wrap">
-          <iframe src="https://www.youtube.com/embed/2kTji2xfg_g?modestbranding=1&rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen title="Colgate"></iframe>
+          <a class="video-play" href="https://www.youtube.com/watch?v=5H2T9EnYOP0" target="_blank" rel="noopener" data-video-src="https://www.youtube.com/embed/5H2T9EnYOP0?rel=0" aria-label="Play Escada">
+            <img src="https://i.ytimg.com/vi/5H2T9EnYOP0/maxresdefault.jpg" alt="" loading="lazy" width="480" height="360" />
+            <span class="play-icon" aria-hidden="true">▶</span>
+            <span class="play-caption">Watch video</span>
+          </a>
         </div>
-        <div class="video-meta"><span class="video-brand">Colgate</span><span class="video-category">Wellness</span></div>
-      </div>
-      <div class="video-card">
+        <div class="video-meta">
+          <h3 class="video-brand">Escada</h3>
+          <p class="video-category">Campaign · Music only</p>
+        </div>
+      </article>
+      <article class="video-card" data-language="english" hidden>
         <div class="video-wrap">
-          <iframe src="https://www.youtube.com/embed/Gr5aR_8A5Lo?modestbranding=1&rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen title="GLOWiD"></iframe>
+          <a class="video-play" href="https://www.youtube.com/watch?v=aCNryroIafM" target="_blank" rel="noopener" data-video-src="https://www.youtube.com/embed/aCNryroIafM?rel=0" aria-label="Play Clue in English">
+            <img src="https://i.ytimg.com/vi/aCNryroIafM/maxresdefault.jpg" alt="" loading="lazy" width="480" height="360" />
+            <span class="play-icon" aria-hidden="true">▶</span>
+            <span class="play-caption">Watch video</span>
+          </a>
         </div>
-        <div class="video-meta"><span class="video-brand">GLOWiD ENG</span><span class="video-category">Skincare & Makeup</span></div>
-      </div>
-      <div class="video-card">
+        <div class="video-meta">
+          <h3 class="video-brand">Clue</h3>
+          <p class="video-category">Health &amp; wellness · English</p>
+        </div>
+      </article>
+      <article class="video-card" data-language="finnish" hidden>
         <div class="video-wrap">
-          <iframe src="https://www.youtube.com/embed/wGNxopDfmGM?modestbranding=1&rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen title="Magnum Pop up store"></iframe>
+          <a class="video-play" href="https://www.youtube.com/watch?v=2kTji2xfg_g" target="_blank" rel="noopener" data-video-src="https://www.youtube.com/embed/2kTji2xfg_g?rel=0" aria-label="Play Colgate in Finnish">
+            <img src="https://i.ytimg.com/vi/2kTji2xfg_g/maxresdefault.jpg" alt="" loading="lazy" width="480" height="360" />
+            <span class="play-icon" aria-hidden="true">▶</span>
+            <span class="play-caption">Watch video</span>
+          </a>
         </div>
-        <div class="video-meta"><span class="video-brand">Magnum</span><span class="video-category">Events</span></div>
-      </div>
-      <div class="video-card">
+        <div class="video-meta">
+          <h3 class="video-brand">Colgate</h3>
+          <p class="video-category">Wellness · Finnish</p>
+        </div>
+      </article>
+      <article class="video-card" data-language="english" hidden>
         <div class="video-wrap">
-          <iframe src="https://www.youtube.com/embed/oDyKBHazOs0?modestbranding=1&rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen title="Gleeze x Lyko"></iframe>
+          <a class="video-play" href="https://www.youtube.com/watch?v=Gr5aR_8A5Lo" target="_blank" rel="noopener" data-video-src="https://www.youtube.com/embed/Gr5aR_8A5Lo?rel=0" aria-label="Play GLOWiD in English">
+            <img src="https://i.ytimg.com/vi/Gr5aR_8A5Lo/maxresdefault.jpg" alt="" loading="lazy" width="480" height="360" />
+            <span class="play-icon" aria-hidden="true">▶</span>
+            <span class="play-caption">Watch video</span>
+          </a>
         </div>
-        <div class="video-meta"><span class="video-brand">Gleeze x Lyko</span><span class="video-category">Events</span></div>
-      </div>
-      <div class="video-card">
+        <div class="video-meta">
+          <h3 class="video-brand">GLOWiD</h3>
+          <p class="video-category">Skincare &amp; makeup · English</p>
+        </div>
+      </article>
+      <article class="video-card" data-language="music" hidden>
         <div class="video-wrap">
-          <iframe src="https://www.youtube.com/embed/U_ExqJCHAJA?modestbranding=1&rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen title="Oddlygood ENG"></iframe>
+          <a class="video-play" href="https://www.youtube.com/watch?v=oDyKBHazOs0" target="_blank" rel="noopener" data-video-src="https://www.youtube.com/embed/oDyKBHazOs0?rel=0" aria-label="Play Gleeze x Lyko">
+            <img src="https://i.ytimg.com/vi/oDyKBHazOs0/maxresdefault.jpg" alt="" loading="lazy" width="480" height="360" />
+            <span class="play-icon" aria-hidden="true">▶</span>
+            <span class="play-caption">Watch video</span>
+          </a>
         </div>
-        <div class="video-meta"><span class="video-brand">Oddlygood (ENG)</span><span class="video-category">Food</span></div>
-      </div>
+        <div class="video-meta">
+          <h3 class="video-brand">Gleeze x Lyko</h3>
+          <p class="video-category">Event coverage · Music only</p>
+        </div>
+      </article>
+    </div>
+    </div>
+    <div class="work-actions">
+      <p id="work-status" role="status">6 featured videos</p>
+      <button type="button" class="btn btn-outline" id="work-toggle" aria-expanded="false" aria-controls="portfolio-library" hidden>View more work <span aria-hidden="true">↓</span></button>
+    </div>
+    <noscript><style>.video-card[hidden] { display: block !important; } #work-status { display: none; }</style></noscript>
+    <div class="work-invitation">
+      <h3>What could we create for your brand?</h3>
+      <p>Bring your brief, your goal or your first idea. Let's explore it together.</p>
+      <a href="#contact" class="btn btn-pink">Let's talk about your project</a>
     </div>
 
     <!-- MAGNUM SNAPSHOTS -->
@@ -275,7 +399,7 @@
         <span class="magnum-snap-tag">Campaign · Magnum</span>
         <h3 class="magnum-snap-title">Snapshots from <em>Magnum Campaign</em></h3>
       </div>
-      <div class="magnum-snap-grid">
+      <div class="magnum-snap-grid" id="magnum-gallery" tabindex="0" role="group" aria-label="Five Magnum campaign moments. Use arrow keys or swipe to browse.">
         <div class="snap-card">
           <video src="assets/magnum1.mp4" autoplay loop muted playsinline></video>
         </div>
@@ -291,6 +415,11 @@
         <div class="snap-card">
           <img src="assets/IMG_8526.jpg" alt="Magnum campaign snapshot" />
         </div>
+      </div>
+      <div class="gallery-controls">
+        <button type="button" class="gallery-arrow" data-gallery-direction="-1" aria-label="Previous Magnum moment" aria-controls="magnum-gallery">←</button>
+        <span>Swipe to explore all five moments</span>
+        <button type="button" class="gallery-arrow" data-gallery-direction="1" aria-label="Next Magnum moment" aria-controls="magnum-gallery">→</button>
       </div>
     </div>
   </section>
@@ -309,7 +438,7 @@
         <span class="tcard-brand">Withings</span>
       </div>
       <div class="tcard">
-        <p class="tcard-quote">"You have made a very nice asset! We like 'today's special' and that she keeps a strong focus on the ice cream — it feels very on brand."</p>
+        <p class="tcard-quote">"You have made a very nice asset! We like 'today's special' and that she keeps a strong focus on the ice cream, it feels very on brand."</p>
         <span class="tcard-brand">Magnum</span>
       </div>
       <div class="tcard">
@@ -356,6 +485,8 @@
         <p>Final files are delivered on time, ready to publish or run as ads. Revisions included.</p>
       </div>
     </div>
+      </div>
+    </div>
   </section>
 
   <!-- CONTACT -->
@@ -363,30 +494,33 @@
     <div class="contact-layout">
     <div class="contact-inner">
       <div class="section-tag">Get in touch</div>
-      <h2 class="section-title">Let's create something<br><em>together.</em></h2>
-      <p class="contact-sub">Have a project in mind? Fill out the form and I'll get back to you within 24 hours.</p>
+      <h2 class="section-title">What are you<br><em>working on?</em></h2>
+      <p class="contact-sub">Tell me a little about your brand and what you'd like to achieve. Whether you have a detailed brief or just an idea, I'd love to hear it and explore how I can help.</p>
       <form action="https://formspree.io/f/mgoqjqjb" method="POST" class="contact-form">
         <input type="hidden" name="_next" value="https://claudiaramstedt.com/success.html" />
         <div class="form-row">
           <div class="form-group">
             <label for="name">Your name</label>
-            <input type="text" id="name" name="name" placeholder="Jane Smith" required />
+            <input type="text" id="name" name="name" placeholder="Your name" autocomplete="name" required />
           </div>
           <div class="form-group">
             <label for="email">Email address</label>
-            <input type="email" id="email" name="email" placeholder="jane@brand.com" required />
+            <input type="email" id="email" name="email" placeholder="you@brand.com" autocomplete="email" required />
           </div>
         </div>
         <div class="form-group">
-          <label for="brand">Brand / Company</label>
-          <input type="text" id="brand" name="brand" placeholder="Your brand name" />
+          <label for="brand">Brand / company <span class="optional">(optional)</span></label>
+          <input type="text" id="brand" name="brand" placeholder="Your brand name" autocomplete="organization" />
         </div>
         <div class="form-group">
-          <label for="message">Tell me about your project</label>
-          <textarea id="message" name="message" rows="5" placeholder="What type of content are you looking for? Any details about your product, niche, or goals..." required></textarea>
+          <label for="message">What would you like to create or achieve?</label>
+          <textarea id="message" name="message" rows="5" placeholder="A campaign, a product launch, ongoing content or an idea you'd like help shaping. Share whatever you know so far." required></textarea>
         </div>
-        <button type="submit" class="btn btn-dark btn-full">Send message</button>
+        <button type="submit" class="btn btn-dark btn-full">Let's start the conversation</button>
+        <p class="form-status" role="status" hidden></p>
       </form>
+      <p class="contact-reassurance">I'll get back to you within one business day.</p>
+      <p class="contact-email">Prefer email? <a href="mailto:ugc.claudia.ram@gmail.com">ugc.claudia.ram@gmail.com</a></p>
     </div>
     <div class="contact-image">
       <img src="assets/claudia-filming.jpg" alt="Claudia filming" class="contact-img" />
