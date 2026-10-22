@@ -452,6 +452,36 @@ img { max-width: 100%; display: block; }
   opacity: 1;
 }
 
+/* Frame the supplied logos without their large outer margins. */
+.brand-mark {
+  position: relative;
+  display: block;
+  flex-shrink: 0;
+  width: 140px;
+  height: 48px;
+  margin: 0 20px;
+  overflow: hidden;
+  opacity: 0.85;
+  transition: opacity 0.2s;
+}
+
+.brand-mark:hover { opacity: 1; }
+
+.brand-mark img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 180px;
+  max-width: none;
+  height: auto;
+  transform: translate(-50%, -50%);
+}
+
+.brand-mark-stadium { width: 180px; }
+.brand-mark-stadium img { width: 235px; }
+.brand-mark-iciw { width: 115px; }
+.brand-mark-iciw img { width: 165px; }
+
 .brand-logo {
   font-size: 1rem;
   font-weight: 700;
