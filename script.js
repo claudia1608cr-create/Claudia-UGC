@@ -107,7 +107,7 @@ function renderPortfolio() {
   }
   workToggle.setAttribute('aria-expanded', String(expanded));
   workToggle.textContent = expanded ? 'Show featured work ↑' : 'View more work ↓';
-  workStatus.textContent = expanded ? cards.length + ' videos, organised by language' : '6 featured videos';
+  workStatus.textContent = expanded ? cards.length + ' videos, organised by language' : cards.filter(card => card.dataset.featured === 'true').length + ' featured videos';
 }
 if (workToggle && library) {
   workToggle.hidden = false;
